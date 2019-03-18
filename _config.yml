@@ -1,12 +1,11 @@
-name: White Paper
+name: Alex Minnaar
 description: >
     A simple jekyll theme aimed at programmers who like clean interface to write posts
     and show off some code.
 about: >
-    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
+    Welcome to my blog.  My name is Alex Minnaar and I work in the areas of machine learning/data science/software engineering.  In terms of machine learning I have experience with deep learning, natural langage processing, and recommender systems as well as ML frameworks such as TensorFlow, Keras, CoreNLP, MALLET, and Spark MLlib.  In terms of software engineering I haved worked with languages such as Scala, Python, and C++ and distributed processing frameworks like Spark and low-level frameworks like CUDA C.  
 master_repo: false
-url: "http://vinitkumar.me/white-paper"
+url: "http://alexminnaar.com"
 markdown: kramdown
 highlighter: rouge
 
@@ -19,14 +18,11 @@ disqus_shortname:
 
 rtl: false
 owner:
-  name:           whitepaper
-  avatar:         "https://avatars1.githubusercontent.com/u/537678?s=240&v=4"
-  email:          "vinit1414.08@bitmesra.ac.in"
+  name:           alexminnaar
+  email:          "minnaaralex@gmail.com"
   # Social networking links used in footer. Update and remove as you like.
-  twitter: vinitkme
-  github: https://github.com/vinitkumar
-  stackexchange: https://stackoverflow.com/users/859112/vinit-kumar?tab=profile
-  linkedin: https://www.linkedin.com/in/vinitatlinkedin
+  github: https://github.com/alexminnaar
+  linkedin: https://www.linkedin.com/in/alex-minnaar-853a2356/
   # For Google Authorship https://plus.google.com/authorship
   google_plus:
 

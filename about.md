@@ -3,8 +3,6 @@ layout: default
 title: About Vinit Kumar
 ---
 
-![user-avatar]({{ site.owner.avatar }})
-
 {{site.about}}
 
 <div class="pagination">
