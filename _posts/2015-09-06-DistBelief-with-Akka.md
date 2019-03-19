@@ -69,7 +69,7 @@ where $$\sigma'$$ is the derivative of the activation function and $$\odot$$ is 
 
 $$\nabla_{l,k}=\mathbf{x_l} \cdot \delta_k$$
 
-Therefore, the $\delta$'s are passed backwards in the backward pass analogously to how the $$\mathbf{x}$$'s are passed forwards in the forward pass.  Note how the $$\mathbf{y}$$'s and $$\mathbf{x}$$'s have already been computed in the forward pass, so there is no need to recompute them.
+Therefore, the $$\delta$$'s are passed backwards in the backward pass analogously to how the $$\mathbf{x}$$'s are passed forwards in the forward pass.  Note how the $$\mathbf{y}$$'s and $$\mathbf{x}$$'s have already been computed in the forward pass, so there is no need to recompute them.
 
 ## The Weight Updates
 Given the gradient $$\nabla_{l,k}$$ from the backward pass, we can update the weights $$\mathbf{W}_{l,k}$$ via the stochastic graident descent equation
