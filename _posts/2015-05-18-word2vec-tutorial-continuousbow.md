@@ -29,7 +29,7 @@ where $$\mathbf{v'_{w_j}}$$ is the $$j^{th}$$ column of the output matrix $$\mat
 
 $$y_j=p(w_{y_j} | w_1,...,w_C)=\frac{\exp(u_j)}{\sum^V_{j'=1} \exp(u_j')}$$
 
-Now that we know how forward propagation works we can learn the weight matrices $$\mathbf{W}$$ and $$\mathbf{W'}$.  
+Now that we know how forward propagation works we can learn the weight matrices $$\mathbf{W}$$ and $$\mathbf{W'}$$.  
 
 ## Learning the Weight Matrices with Backpropagation
 
