@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A CUDA Implementation of the K-Means Clustering Algoirthm"
+title: "A CUDA Implementation of the K-Means Clustering Algorithm"
 date: 2019-03-05
 comments: false
 categories: 
