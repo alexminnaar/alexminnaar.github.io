@@ -9,8 +9,8 @@ categories:
 In the past, I have studied the online LDA algorithm from [Hoffman et al.](https://www.google.ca/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CDUQFjAA&url=https%3A%2F%2Fwww.cs.princeton.edu%2F~blei%2Fpapers%2FHoffmanBleiBach2010b.pdf&ei=pib7VP_ZIsewggS3pYAY&usg=AFQjCNHLmU8Gk_P4usBj2QcGcaolw87w4w&sig2=TVmpNtdTBqqPScHDqBGYcg&bvm=bv.87611401,d.eXY) in some depth resulting in [this blog post](http://alexminnaar.com/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html) and corresponding [Scala code](https://github.com/alexminnaar/ScalaTopicModels).  Before we go further I will provide a general description of how the algorithm works.  In online LDA, minibatches of documents are sequentially processed to update a global topic/word matrix which defines the topics that have been learned.  The processing consists of two steps:
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px"><b>The E-Step:</b>  Given the minibatch of documents, updates to the corresponding rows of the topic/word matrix are computed.</li>
-  <li style="font-size:17px"><b>The M-Step:</b>  The updates from the E-Step are blended with the current topic/word matrix resulting in the updated topic/word matrix.</li>
+  <li style="font-size:19px"><b>The E-Step:</b>  Given the minibatch of documents, updates to the corresponding rows of the topic/word matrix are computed.</li>
+  <li style="font-size:19px"><b>The M-Step:</b>  The updates from the E-Step are blended with the current topic/word matrix resulting in the updated topic/word matrix.</li>
 </ul>
 
 This post details how I developed a distributed version of online LDA using the Apache Spark engine.  At first glance, it might seem redundant to build a distributed version of online LDA since one of the main advantages of the algorithm is its scalability (documents are streamed sequentially so they do not need to be kept in main memory).  While it is true that the original algorithm is scalable in terms of memory, using a distributed computing framework (such as Spark) can speed the algorithm up immensely.  Today, companies are demanding real-time or near real-time data processing which makes a Spark solution advantageous.  Furthermore, there are some cases - for example if you choose to learn a sufficiently large number of topics with a sufficiently large vocabulary size - where the original algorithm can in fact run into memory issues.  Hopefully I have shown that a distributed version of online LDA would be beneficial.
@@ -174,10 +174,10 @@ def eStep(expELogBeta: Array[(V, Int, Int)], numTopics: Int, alpha: Double, gamm
 However, currently our minibatch RDD only contains lists of ```(wordId, frequency)``` tuples (i.e. bag-of-words format).  We need to somehow combine our current minibatch RDD with the distributed topic/word matrix to get lists of ```(wordId, frequency, row)``` 3-tuples in order to be able to apply our new ```map``` function to it.  This can be done in the following way.
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px">Give each document in the minibatch RDD a unique Id via the <code class="highlighter-rouge">zipWithIndex</code> function followed by a <code class="highlighter-rouge">map</code> function.</li>
-  <li style="font-size:17px">Apply the <code class="highlighter-rouge">flatMap</code> function to the RDD to produce an RDD of <code class="highlighter-rouge">(docId, wordId, frequency)</code> 3-tuples.</li>
-  <li style="font-size:17px">Use the <code class="highlighter-rouge">join</code> function to join this RDD with the distributed topic/word matrix via the wordId key to produce an RDD of <code class="highlighter-rouge">(docId, wordId, frequency, row)</code> 4-tuples.</li>
-  <li style="font-size:17px">Finally use the <code class="highlighter-rouge">groupByKey</code> on the <code class="highlighter-rouge">docId</code> field to get our minibatch RDD in the correct <code class="highlighter-rouge">(row, wordId, frequency)</code> 3-tuple format.</li>
+  <li style="font-size:19px">Give each document in the minibatch RDD a unique Id via the <code class="highlighter-rouge">zipWithIndex</code> function followed by a <code class="highlighter-rouge">map</code> function.</li>
+  <li style="font-size:19px">Apply the <code class="highlighter-rouge">flatMap</code> function to the RDD to produce an RDD of <code class="highlighter-rouge">(docId, wordId, frequency)</code> 3-tuples.</li>
+  <li style="font-size:19px">Use the <code class="highlighter-rouge">join</code> function to join this RDD with the distributed topic/word matrix via the wordId key to produce an RDD of <code class="highlighter-rouge">(docId, wordId, frequency, row)</code> 4-tuples.</li>
+  <li style="font-size:19px">Finally use the <code class="highlighter-rouge">groupByKey</code> on the <code class="highlighter-rouge">docId</code> field to get our minibatch RDD in the correct <code class="highlighter-rouge">(row, wordId, frequency)</code> 3-tuple format.</li>
 </ul>
 
 This process is shown in the following code.
@@ -232,11 +232,11 @@ As you can see, this is exactly the same as performing a weighted sum of two mat
 Now we are at a point at which we can describe the full algorithm.  For each minibatch of documents, the following steps are taken.
 
 <ol style="margin-left: 20px">
-  <li style="font-size:17px">The minibatch RDD is transformed into its bag-of-words form.</li>
-  <li style="font-size:17px">The minibatch RDD is joined with the topic/word matrix RDD to get the rows corresponding to the words in the minibatch.</li>
-  <li style="font-size:17px">The E-Step function is applied to the minibatch RDD.</li>
-  <li style="font-size:17px">The M-Step function is applied to the output RDD of the previous step.</li>
-  <li style="font-size:17px">The rows of the topic/word matrix RDD corresponding to the words in the minibatch are updated.</li>
+  <li style="font-size:19px">The minibatch RDD is transformed into its bag-of-words form.</li>
+  <li style="font-size:19px">The minibatch RDD is joined with the topic/word matrix RDD to get the rows corresponding to the words in the minibatch.</li>
+  <li style="font-size:19px">The E-Step function is applied to the minibatch RDD.</li>
+  <li style="font-size:19px">The M-Step function is applied to the output RDD of the previous step.</li>
+  <li style="font-size:19px">The rows of the topic/word matrix RDD corresponding to the words in the minibatch are updated.</li>
 </ol>
 
 These steps are repeated for each minibatch.  The following diagram illustrates this process.

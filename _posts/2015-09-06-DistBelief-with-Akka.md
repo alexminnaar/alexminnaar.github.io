@@ -10,20 +10,20 @@ Presently, most deep neural networks are trained using GPUs due to the enormous 
 
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px">GPUs are expensive, both to buy and to rent.</li>
-  <li style="font-size:17px">Most GPUs can only hold a relatively small amount of data in memory.</li>
-  <li style="font-size:17px">CPU-to-GPU data transfer is very slow.  Depending on your application it can be so slow that it actually negates the speed-up that the GPU provides.</li>
-  <li style="font-size:17px">The CUDA GPU programming library is written in low-level C which many programmers are not experienced with (however there are many deep learning libraries written in high level languages with GPU capabilities e.g. <em>Theano</em>, <em>Torch</em>, <em>Caffe</em>, etc.).</li>
+  <li style="font-size:19px">GPUs are expensive, both to buy and to rent.</li>
+  <li style="font-size:19px">Most GPUs can only hold a relatively small amount of data in memory.</li>
+  <li style="font-size:19px">CPU-to-GPU data transfer is very slow.  Depending on your application it can be so slow that it actually negates the speed-up that the GPU provides.</li>
+  <li style="font-size:19px">The CUDA GPU programming library is written in low-level C which many programmers are not experienced with (however there are many deep learning libraries written in high level languages with GPU capabilities e.g. <em>Theano</em>, <em>Torch</em>, <em>Caffe</em>, etc.).</li>
 </ul>
 
 _DistBelief_ is a framework for training deep neural networks that avoids GPUs entirely (for the above reasons) and instead performs parallel computing with clusters of commodity machines.  _DistBelief_ was first presented in the 2012 paper "_Large Scale Distributed Deep Networks_" by _Dean et al._  In this paper, the [GraphLab](http://select.cs.cmu.edu/code/graphlab/) distributed computing framework was used to implement _DistBelief_.  As we shall see later in this post, _DistBelief_ relies heavily on asynchronous message passing which makes the [Akka actor framework](http://akka.io/) a suitable alternative.  This post will describe how to implement the _DistBelief_ framework using Akka (all code is in [this github repo](https://github.com/alexminnaar/AkkaDistBelief)).  This post will be divided into five sections
 
 <ol style="margin-left: 20px">
-  <li style="font-size:17px">A brief overview of how neural networks are trained using the backpropagation algorithm.</li>
-  <li style="font-size:17px">A brief overview of how Akka handles asynchronous message passing.</li>
-  <li style="font-size:17px">How the DistBelief framework trains deep neural networks using the distributed, asynchronous Downpour SGD algorithm.</li>
-  <li style="font-size:17px">How Downpour SGD can be implemented using Akka.</li>
-  <li style="font-size:17px">Finally, a demo applying DistBelief to the classic XOR function problem.</li>
+  <li style="font-size:19px">A brief overview of how neural networks are trained using the backpropagation algorithm.</li>
+  <li style="font-size:19px">A brief overview of how Akka handles asynchronous message passing.</li>
+  <li style="font-size:19px">How the DistBelief framework trains deep neural networks using the distributed, asynchronous Downpour SGD algorithm.</li>
+  <li style="font-size:19px">How Downpour SGD can be implemented using Akka.</li>
+  <li style="font-size:19px">Finally, a demo applying DistBelief to the classic XOR function problem.</li>
 </ol>
 
 Let's get started!
@@ -41,8 +41,8 @@ The 3 layers are called the _input layer_, the _hidden layer_ and the _output la
 Training a neural network refers to the process of finding the optimal layer weights that map the inputs to the outputs in a given data set.  This is done via the backpropagation algorithm which consists of two steps.
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px">A forward pass to compute the output for a given input with the current network weights which gives us the predicted output.  We compare the predicted output to the actual output to get the prediction error.</li>
-  <li style="font-size:17px">A backward pass to compute the gradients of the layer weights with respect to the prediction error.</li>
+  <li style="font-size:19px">A forward pass to compute the output for a given input with the current network weights which gives us the predicted output.  We compare the predicted output to the actual output to get the prediction error.</li>
+  <li style="font-size:19px">A backward pass to compute the gradients of the layer weights with respect to the prediction error.</li>
 </ul>
 
 Once we have these gradients we can use an optimization algorithm of our choosing to update the layer weights.  The most commonly used algorithm is stochastic gradient descent (others include _Adagrad_, _L-BFGS_, _momentum SDG_, etc.).
@@ -85,8 +85,8 @@ Akka is a framework for concurrent programming written in Scala (again, this is 
 As stated previously, _DistBelief_ is a framework for training deep neural networks in a distributed fashion using clusters of machines rather than GPUs.  The particular distributed training algorithm it uses is called _Downpour SGD_.  _Downpour SGD_ utilizes two levels of parallelism
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px">Data Parallelism: The training data is paritioned across several machines each having its own replica of the model.  Each model trains with its partition of the data in parallel.</li>
-  <li style="font-size:17px">Model Parallelism:  The layers of each model replica are distributed across machines.</li>
+  <li style="font-size:19px">Data Parallelism: The training data is paritioned across several machines each having its own replica of the model.  Each model trains with its partition of the data in parallel.</li>
+  <li style="font-size:19px">Model Parallelism:  The layers of each model replica are distributed across machines.</li>
 </ul>
 
 To describe _Downpour SGD_ in greater detail, let's start with the data partitions.  The data paritions (called _data shards_ in the original paper) each train their own model replica with their partition of the data (i.e. one model replica per data shard).  Furthermore, each model replica is partitioned across machines by layer.  The weights for the model are held in a central parameter server which is also paritioned across multiple machines.  Each parameter partition holds the weights for one layer of the model (for example, if the model replicas have 3 layers, then the parameter server has 2 partitions for the weights from layer 1 to layer 2 and the weights from layer 2 to layer 3 respectively).  Therefore, as the model replicas are trained in parallel, they _asynchronously_ read (in the forward pass) and update (in the backward pass) their corresponding weight parameters. This means that the weight parameter that a model replica layer reads may have been previously updated by the same layer from a different model replica.
@@ -297,10 +297,10 @@ class Layer(replicaId: Int
 A ```Layer``` actor can accept four messages
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px"><b>FetchParameters:</b> When this message is received the actor sends a message to its corresponding parameter shard to get the latest version of its weights.  It then enters a waiting context until these wieghts are received at which point it returns to its default context.</li>
-  <li style="font-size:17px"><b>MyChild:</b> This message gives the layer actor the <code class="highlighter-rouge">actorRef</code> of its child layer.  This should happen immediately after the layer actor is created in the <code class="highlighter-rouge">DataShard</code> actor.  Obviously, if the layer is the output layer of the network then it will never receive this kind of message.</li>
-  <li style="font-size:17px"><b>ForwardPass:</b>  This message is received during the forward pass of the previously mentioned backpropagation algorithm.  It contains the outputs of the previous layer which are needed to compute the outputs of the current layer.  If the actor has a child layer (given by the <code class="highlighter-rouge">MyChild</code> message) it sends the same <code class="highlighter-rouge">ForwardPass</code> message to its child layer actor.  Alternatively, if this is the output layer of the neural network then the backwards pass is initialized by computing the prediction error as well as the delta's and gradients for this layer.  The gradients are sent to the <code class="highlighter-rouge">ParameterShard</code> actor to asynchronously update the centralized weights.  Then we continue the backpropagation procedure by sending the delta's to the current layer's parent layer actor wrapped in a <code class="highlighter-rouge">BackwardPass</code> message.</li>
-  <li style="font-size:17px"><b>BackwardPass:</b>  When the actor receives a <code class="highlighter-rouge">BackwardPass</code> message containing the delta's from the  child layer, it uses them to compute the gradient of of the current layer (which is sent to the <code class="highlighter-rouge">ParameterShard</code> for updating) and also to compute the delta's of the current layer which it passes to its parent layer if it exits.  If the parent layer does not exist (i.e. it is the input layer) then the backpropagation procedure is finished at which point the layer sends a <code class="highlighter-rouge">ReadyToProcess</code> message to its <code class="highlighter-rouge">DataShard</code> actor indicating that it is ready to process another data point.</li>
+  <li style="font-size:19px"><b>FetchParameters:</b> When this message is received the actor sends a message to its corresponding parameter shard to get the latest version of its weights.  It then enters a waiting context until these wieghts are received at which point it returns to its default context.</li>
+  <li style="font-size:19px"><b>MyChild:</b> This message gives the layer actor the <code class="highlighter-rouge">actorRef</code> of its child layer.  This should happen immediately after the layer actor is created in the <code class="highlighter-rouge">DataShard</code> actor.  Obviously, if the layer is the output layer of the network then it will never receive this kind of message.</li>
+  <li style="font-size:19px"><b>ForwardPass:</b>  This message is received during the forward pass of the previously mentioned backpropagation algorithm.  It contains the outputs of the previous layer which are needed to compute the outputs of the current layer.  If the actor has a child layer (given by the <code class="highlighter-rouge">MyChild</code> message) it sends the same <code class="highlighter-rouge">ForwardPass</code> message to its child layer actor.  Alternatively, if this is the output layer of the neural network then the backwards pass is initialized by computing the prediction error as well as the delta's and gradients for this layer.  The gradients are sent to the <code class="highlighter-rouge">ParameterShard</code> actor to asynchronously update the centralized weights.  Then we continue the backpropagation procedure by sending the delta's to the current layer's parent layer actor wrapped in a <code class="highlighter-rouge">BackwardPass</code> message.</li>
+  <li style="font-size:19px"><b>BackwardPass:</b>  When the actor receives a <code class="highlighter-rouge">BackwardPass</code> message containing the delta's from the  child layer, it uses them to compute the gradient of of the current layer (which is sent to the <code class="highlighter-rouge">ParameterShard</code> for updating) and also to compute the delta's of the current layer which it passes to its parent layer if it exits.  If the parent layer does not exist (i.e. it is the input layer) then the backpropagation procedure is finished at which point the layer sends a <code class="highlighter-rouge">ReadyToProcess</code> message to its <code class="highlighter-rouge">DataShard</code> actor indicating that it is ready to process another data point.</li>
 </ul>
 
 ## The Master Actor
@@ -449,10 +449,10 @@ As you can see, the predictions are very close to the targets indicating that we
 In summary, an Akka implementation of the _DistBelief_ deep neural network training framework has been presented.  From the above example, it appears to successfully learn the XOR function, however there is still more features that could be added including
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px">The original paper specifies a deeper form of model parallelism than what was implemented in this blog post.  Here model replicas were distributed by layer whereas theDistBelief paper allows for model sharding within layers as well.  This would increase parallelism at the expense of much more complicated code (i.e. coordinator actors for each layer).</li>
-  <li style="font-size:17px">Implementing Sandblaster L-BFGS, the other distributed optimization algorithm from the DistBelief paper (even though Downpour SGD was shown to perform better in the paper).</li>
-  <li style="font-size:17px">Implementing regularization techniques such as early stopping, random dropout, etc.</li>
-  <li style="font-size:17px">Implementing more complicated neural network models such as recurrent neural networks and LSTMs.</li>
+  <li style="font-size:19px">The original paper specifies a deeper form of model parallelism than what was implemented in this blog post.  Here model replicas were distributed by layer whereas theDistBelief paper allows for model sharding within layers as well.  This would increase parallelism at the expense of much more complicated code (i.e. coordinator actors for each layer).</li>
+  <li style="font-size:19px">Implementing Sandblaster L-BFGS, the other distributed optimization algorithm from the DistBelief paper (even though Downpour SGD was shown to perform better in the paper).</li>
+  <li style="font-size:19px">Implementing regularization techniques such as early stopping, random dropout, etc.</li>
+  <li style="font-size:19px">Implementing more complicated neural network models such as recurrent neural networks and LSTMs.</li>
 </ul>
 
 Thank you for reading!

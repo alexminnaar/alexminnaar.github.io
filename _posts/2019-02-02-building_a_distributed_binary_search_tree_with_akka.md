@@ -13,10 +13,10 @@ In this blog post I will descibe an interesting Akka mini-project that I came ac
 A binary search tree is a tree-based data structure with the following properites
 
 <ol style="margin-left: 20px">
-  <li style="font-size:17px">Each node in the tree stores an element and can have at most two child nodes.</li>
-  <li style="font-size:17px">The tree does not contain any duplicate values.</li>
-  <li style="font-size:17px">Elements in a node's left subtree are strictly smaller than the node's element.</li>
-  <li style="font-size:17px">Elements in a node's right subtree are strictly greater than the node's element.</li>
+  <li style="font-size:19px">Each node in the tree stores an element and can have at most two child nodes.</li>
+  <li style="font-size:19px">The tree does not contain any duplicate values.</li>
+  <li style="font-size:19px">Elements in a node's left subtree are strictly smaller than the node's element.</li>
+  <li style="font-size:19px">Elements in a node's right subtree are strictly greater than the node's element.</li>
 </ol>
 
 
@@ -29,9 +29,9 @@ A binary search tree is a tree-based data structure with the following properite
 There are also three main tasks a binary search tree can perform.
 
 <ol style="margin-left: 20px">
-  <li style="font-size:17px"><b>Contains</b>: Determine if a node containing a particular element exists in the tree by performing a binary tree search.  This is done by starting at the root node and recursively searching the tree by selecting the left or right subtree based on the node's value and the value that we are searching for.  We know that the value does not exist in the tree if we reach an external node and have not yet found it.</li>
-  <li style="font-size:17px"><b>Insert</b>: Insert a new node in the correct place in the tree given its value.  This is also done with a tree search.  Assuming the element does not already exist in the tree, we search for the value that we wish to insert until we arrive at an external node at which point we add the new node as its right or left child depending on its value.</li>
-  <li style="font-size:17px"><b>Remove</b>: Remove an element from the tree and rearrange the remaining nodes in order to keep the desired structure.  If the node you wish to delete is an external node you simply remove it, however if it has children it is more complicated.  One way to deal with this is to identify its in-order predecessor in the left subtree.  This is the greatest element in the left subtree which can be found by recursively selecting the right child within this subtree (in other words it is the right-most element in the left subtree).  This in-order predecessor is then removed (it is an external node so this is simple) and is used to replace the node that is to be deleted.  The opposite procedure would work as well (i.e. replacing the node with its in-order successor in the right subtree).</li>
+  <li style="font-size:19px"><b>Contains</b>: Determine if a node containing a particular element exists in the tree by performing a binary tree search.  This is done by starting at the root node and recursively searching the tree by selecting the left or right subtree based on the node's value and the value that we are searching for.  We know that the value does not exist in the tree if we reach an external node and have not yet found it.</li>
+  <li style="font-size:19px"><b>Insert</b>: Insert a new node in the correct place in the tree given its value.  This is also done with a tree search.  Assuming the element does not already exist in the tree, we search for the value that we wish to insert until we arrive at an external node at which point we add the new node as its right or left child depending on its value.</li>
+  <li style="font-size:19px"><b>Remove</b>: Remove an element from the tree and rearrange the remaining nodes in order to keep the desired structure.  If the node you wish to delete is an external node you simply remove it, however if it has children it is more complicated.  One way to deal with this is to identify its in-order predecessor in the left subtree.  This is the greatest element in the left subtree which can be found by recursively selecting the right child within this subtree (in other words it is the right-most element in the left subtree).  This in-order predecessor is then removed (it is an external node so this is simple) and is used to replace the node that is to be deleted.  The opposite procedure would work as well (i.e. replacing the node with its in-order successor in the right subtree).</li>
 </ol>
 
 
@@ -71,9 +71,9 @@ object BinaryTreeSet {
 The ```Insert```, ```Contains```, and ```Remove``` messages each have three fields
 
 <ul style="margin-left: 20px">
-  <li style="font-size:17px"><b>requester</b> which is a reference to the actor that sent the request.</li>
-  <li style="font-size:17px"><b>id</b> which is a unique id for the message.</li>
-  <li style="font-size:17px"><b>elem</b> which is the value to be inserted (<b>Insert</b>), removed (<b>Remove</b>) or searched for (<b>Contains</b>).</li>
+  <li style="font-size:19px"><b>requester</b> which is a reference to the actor that sent the request.</li>
+  <li style="font-size:19px"><b>id</b> which is a unique id for the message.</li>
+  <li style="font-size:19px"><b>elem</b> which is the value to be inserted (<b>Insert</b>), removed (<b>Remove</b>) or searched for (<b>Contains</b>).</li>
 </ul>
 
 There is also an ```OperationFinished``` message which is sent back to the ```BinaryTreeSet``` actor when the operation specified by the ```id``` field is finished.  

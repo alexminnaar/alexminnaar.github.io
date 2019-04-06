@@ -9,8 +9,8 @@ categories:
 I recently ran into a problem at work where I had to predict whether an account would churn  in the near future given the account's time series usage in a certain time interval.  So this is a binary-valued classification problem (i.e. churn or not churn) with a time series as a predictor.  This was not a very straight-forward problem to tackle because it seemed like there two possible strategies to employ.
 
 <ol style="margin-left: 20px">
-  <li style="font-size:17px">Extract features from the time series like its mean, maximum, minimum, and other differential features.  Then use well-known classification algorithms (Naive Bayes, SVMs, etc.) with these features to make a prediction.</li>
-  <li style="font-size:17px">Use a k-NN approach.  For a given time series example that you want to predict, find the most similar time series in the training set and use its corresponding output as the prediction.</li>
+  <li style="font-size:19px">Extract features from the time series like its mean, maximum, minimum, and other differential features.  Then use well-known classification algorithms (Naive Bayes, SVMs, etc.) with these features to make a prediction.</li>
+  <li style="font-size:19px">Use a k-NN approach.  For a given time series example that you want to predict, find the most similar time series in the training set and use its corresponding output as the prediction.</li>
 </ol>
 
 I tried both of these strategies and the latter produced the best results.  However this approach is not as simple as it may seem.  This is because finding a good similarity measure between time series is a very non-trivial task.

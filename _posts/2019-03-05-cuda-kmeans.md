@@ -9,8 +9,8 @@ categories:
 This blog post will cover a [CUDA C implementation of the K-means clustering algorithm](https://github.com/alexminnaar/cuKMeans).  K-means clustering is a <i>hard</i> clustering algorithm which means that each datapoint is assigned to one cluster (rather than multiple clusters with different probabilities).   The algorithm starts with random cluster assignments and iterates between two steps
 
 <ol style="margin-left: 20px">
-  <li style="font-size:20px">Assigning datapoints to clusters based on the closest centroid (by some distance metric).</li>
-  <li style="font-size:20px">Updating the centroids based on the new cluster assignments from the previous step.</li>
+  <li style="font-size:19px">Assigning datapoints to clusters based on the closest centroid (by some distance metric).</li>
+  <li style="font-size:19px">Updating the centroids based on the new cluster assignments from the previous step.</li>
 </ol>
 
 Eventually the cluster assignments converge giving the final result.  In this CUDA implementation each of the two steps will be performed in parallel.  The implementation is for the 1-dimensional case where each datapoint is a scalar but it could easily be extended to the multi-dimensional case.
