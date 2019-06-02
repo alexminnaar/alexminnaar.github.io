@@ -229,7 +229,7 @@ for i in range(epochs):
     print("Epoch: {}, Loss: {:.3f}".format(i + 1, loss / steps_per_epoch))
 ```
 
-The weights, biases, inputs, and cost-functions are all implemented as nodes in a computational graph as was described in this blog post.  The particular optimization algorithm used here is stochastic gradient descent where at each iteration a minibatch of training examples are sampled from the training data set and a forward and backward pass are made through the network (```graph.compute_gradients()```) which computes the gradients for each node.  Then the ```sgd.update(trainables)``` function actually updates the weights based on e gradients.
+The weights, biases, inputs, and cost-functions are all implemented as nodes in a computational graph as was described in this blog post.  The particular optimization algorithm used here is stochastic gradient descent where at each iteration a minibatch of training examples are sampled from the training data set and a forward and backward pass are made through the network (```graph.compute_gradients()```) which computes the gradients for each node.  Then the ```sgd.update(trainables)``` function actually updates the weights based on the gradients.
 
 Thank you for reading and you can check out the full computational graph implementation [on github](https://github.com/alexminnaar/cgraph).
 
