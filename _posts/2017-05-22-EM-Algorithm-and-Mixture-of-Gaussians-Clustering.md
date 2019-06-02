@@ -6,7 +6,7 @@ comments: false
 categories: 
 ---
 
-This post is about the Gaussian mixture model which is a probabilistic model with hidden variables and the EM algorithm which is the algorithm used to compute the maximum likelihood estimate of its parameters.
+This post is about the Gaussian mixture model which is a generative probabilistic model with hidden variables and the EM algorithm which is the algorithm used to compute the maximum likelihood estimate of its parameters.
 
 <h2><font size="5">The Gaussian Mixture Model</font></h2>
 
@@ -55,22 +55,23 @@ As stated earlier, the goal here is to compute the maximum likelihood estimate o
 
 $$\mathbf{\mu_k} = \frac{\sum_{i=1}^N p(z_i = k | \mathbf{x_i})\mathbf{x_i}}{\sum_{i=1}^N p(z_i = k | \mathbf{x_i})}, \qquad \mathbf{\Sigma_k}= \frac{\sum_{i=1}^N p(z_i = k | \mathbf{x_i})(\mathbf{x_i} - \mathbf{\mu_k})(\mathbf{x_i} - \mathbf{\mu_k})^T}{\sum_{i=1}^N p(z_i = k | \mathbf{x_i})}, \qquad \mathbf{\alpha_k} = \frac{1}{n} \sum_{i=1}^N p(z_i = k | \mathbf{x_i})$$
 
-As you can see, each expression contains the term $$p(z_i = k\mid\mathbf{x_i})$$.  Using Bayes rule, this can be expanded as
+As you can see, each expression contains the term $$p(z_i = k\mid\mathbf{x_i})$$.  Using Bayes rule, this can be written as
 
 $$p(z_i = k\mid\mathbf{x_i}) = \frac{\alpha_k \mathcal{N}(\mathbf{x_i}|\mathbf{\mu_k},\mathbf{\Sigma_k})}{\sum_{k'}\alpha_{k'} \mathcal{N}(\mathbf{x_i}|\mathbf{\mu_{k'}},\mathbf{\Sigma_{k'}})}$$
 
-So the problem is that $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$ are written in terms of the unknown $$p(z_i = k\mid\mathbf{x_i})$$ and conversely, $$p(z_i = k\mid\mathbf{x_i})$$ is written in terms of the unknowns $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$.  So you cannot solve for anything because every unknown is written in terms of another unknown.  So we are stuck.
+So the problem is that $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$ are written in terms of the unknown $$p(z_i = k\mid\mathbf{x_i})$$ and conversely $$p(z_i = k\mid\mathbf{x_i})$$ is written in terms of the unknowns $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$.  So we cannot solve for anything because every unknown is written in terms of another unknown so we are stuck.  In order to get unstuck we use the EM algorithm.
 
 <h2><font size="5">The EM Algorithm</font></h2>
 
-The EM (*Expectation-Maximization*) algorithm proposes a solution to this problem.  Starting from a random initialization of the parameters $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\mathbf{\alpha_k}$$ the EM algorithm iterates between the following steps until convergence.
+The EM (*Expectation-Maximization*) algorithm proposes a solution to this problem.  Starting from a random initialization of the parameters $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$ the EM algorithm iterates between the following steps until convergence.
 
+<hr>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b><font size="5">E-Step:</font></b> Evaluate $$p(z_i = k\mid\mathbf{x_i})$$ based on the latest values of $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$.
 
-<b>E-Step:</b> Evaluate $$p(z_i = k\mid\mathbf{x_i})$$ based on the latest values of $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\mathbf{\alpha_k}$$.
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b><font size="5">M-Step:</font></b> Evaluate $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$ based on the latest value of $$p(z_i = k\mid\mathbf{x_i})$$.
+<hr>
 
-<b>M-Step:</b> Evaluate $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\mathbf{\alpha_k}$$ based on the latest value of $$p(z_i = k\mid\mathbf{x_i})$$.
-
-Upon convergence you will get a maximum likelihood estimate of the parameters $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\mathbf{\alpha_k}$$, but it is not guaranteed to be the global optimum maximum.  It is, however, guaranteed that the likelihood will increase at every step.
+Upon convergence you will get a maximum likelihood estimate of the parameters $$\mathbf{u_k}$$, $$\mathbf{\Sigma_k}$$ and $$\alpha_k$$, but it is not guaranteed to be the global optimum.  It is, however, guaranteed that the likelihood will increase at every step.
 
 In this way the EM algoritham can be viewed as a kind of coordinate ascent algorithm - starting with a completely random guess, we are re-estimating an unknown parameter based on our best guess of the parameters it depends on and we iteratively move in the right direction.
 

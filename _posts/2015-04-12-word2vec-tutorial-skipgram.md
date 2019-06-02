@@ -8,10 +8,10 @@ categories:
 
 In many natural language processing tasks, words are often represented by their _tf-idf_ scores.  While these scores give us some idea of a word's relative importance in a document, they do not give us any insight into its semantic meaning.  _Word2Vec_ is the name given to a class of neural network models that, given an unlabelled training corpus, produce a vector for each word in the corpus that encodes its semantic information.  These vectors are usefull for two main reasons.
 
-<ol style="margin-left: 20px">
+<ul style="margin-left: 20px">
   <li style="font-size:19px">We can measure the semantic similarity between two words are by calculating the cosine similarity between their corresponding word vectors.  </li>
   <li style="font-size:19px">We can use these word vectors as features for various supervised NLP tasks such as document classification, named entity recognition, and sentiment analysis.  The semantic information that is contained in these vectors make them powerful features for these tasks.</li>
-</ol>
+</ul>
 
 You may ask _"how do we know that these vectors effectively capture the semantic meanings of the words?"_.  The answer is because the vectors adhere surprisingly well to our intuition.  For instance, words that we know to be synonyms tend to have similar vectors in terms of cosine similarity and antonyms tend to have dissimilar vectors.  Even more surprisingly, word vectors tend to obey the laws of analogy.  For example, consider the analogy _"Woman is to queen as man is to king"_.  It turns out that
 

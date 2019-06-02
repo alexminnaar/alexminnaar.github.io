@@ -6,7 +6,7 @@ comments: false
 categories: 
 ---
 
-This blog post will cover a [CUDA C implementation of the K-means clustering algorithm](https://github.com/alexminnaar/cuKMeans).  K-means clustering is a <i>hard</i> clustering algorithm which means that each datapoint is assigned to one cluster (rather than multiple clusters with different probabilities).   The algorithm starts with random cluster assignments and iterates between two steps
+This blog post will cover a [CUDA C implementation of the K-means clustering algorithm](https://github.com/alexminnaar/cuKMeans).  K-means clustering is a <i>hard clustering</i> algorithm which means that each datapoint is assigned to one cluster (rather than multiple clusters with different probabilities).   The algorithm starts with random cluster assignments and iterates between two steps
 
 <ol style="margin-left: 20px">
   <li style="font-size:19px">Assigning datapoints to clusters based on the closest centroid (by some distance metric).</li>
