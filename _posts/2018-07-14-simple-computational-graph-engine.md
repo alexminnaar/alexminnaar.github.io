@@ -14,16 +14,20 @@ Many deep learning libraries like TensorFlow use graphs to represent the computa
 As stated earlier, computations can be thought of as nodes on a graph and the edges between nodes can be thought of as the inputs and outputs to these computations.  Below is a graph that computes the dot product between two vectors.
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/dot_product_graph.png" width="25%" height="25%">
+<img src="{{site.baseurl}}/assets/comp_graph_11.png" width="25%" height="25%">
 </div>
 
 Here the two input vectors are represented as a node and the dot product computation is also represented as a node that takes the vector nodes as inputs.  As you can see from this example, not all nodes represent computations. The two input nodes, for example, only store values.  We can further extend this example by adding a sigmoid computation to the result of the dot product.
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/dot_product_sigmoid_graph.png" width="45%" height="45%">
+<img src="{{site.baseurl}}/assets/comp_graph_22.png" width="45%" height="45%">
 </div>
 
-So this computational graph takes the dot product between two inputs and applies the sigmoid function to the result.  If we assume that $$\mathbf{W}$$ represents a weight vector and $$\mathbf{X}$$ represents an input feature vector then this computational graph essentially represents logistic regression.
+So this computational graph takes the dot product between two inputs and applies the sigmoid function to the result.  If we assume that $$\mathbf{W}$$ represents a weight vector and $$\mathbf{X}$$ represents an input feature vector then this computational graph essentially represents logistic regression.  And logistic regression uses the cross-entropy loss function which can be expressed as an additional node on the graph.
+
+<div style="text-align:center">
+<img src="{{site.baseurl}}/assets/comp_graph_33.png" width="60%" height="60%">
+</div>
 
 So ultimately, all that a node in a computational graph needs to worry about is
 
@@ -115,7 +119,7 @@ $$L = \sum_{(x,z) \in S}z \ln y + (1-z)\ln (1-y)$$
 
 Where $$z \in \{0,1\}$$ is the label and $$y$$ is the prediction so 
 
-$$y = \sigma (\mathbf{W^TX}), \qquad a = \mathbf{W^TX}$$
+$$a = \mathbf{W^TX}, \qquad y = \sigma (\mathbf{a})$$
 
 and the parameter we are interested in training is the $$\mathbf{W}$$ vector.  Using the chain rule from calculus we can express the partial derivative of the loss function with respect to the element $$w_i\in \mathbf{W}$$ as
 
@@ -126,7 +130,13 @@ Where
 $$\frac{\partial L}{\partial y} = \frac{y-z}{y(1-y)}, \qquad \frac{\partial y}{\partial a} =\sigma(a)(1-\sigma(a)), \qquad \frac{\partial a}{\partial w_i}=x_i$$
 
 
-Using these partial derivatives we can actually incrementally compute the final partial derivative by moving backwards through the graph.  We  start at the final node which is the cross-entropy cost-function and here we can compute $$\frac{\partial L}{\partial y}$$ and store the result in that node's ```gradients``` variable.  Then we can travel backwards to the sigmoid node where we can compute $$\frac{\partial y}{\partial a}$$ and combining this with the previous gradient we get the product $$\frac{\partial L}{\partial y} \frac{\partial y}{\partial a}$$ which we then store in that node's ```gradients``` variable.  Then finally we can travel backwards once more to the dot product node where we can compute $$\frac{\partial a}{\partial w_i}$$ and combine this with the previous gradients to arrive at the final result of $$\frac{\partial L}{\partial y} \frac{\partial y}{\partial a} \frac{\partial a}{\partial w_i}$$.  So just as we travelled forwards throught the graph to compute the output, we can travel backwards through the graph to compute the partial derivatives.  And just like in the forwards pass, the backwards pass can be computed in an encapsulated way where all a node needs to be aware of is it's derivative and the nodes it is connected to.  This is where the ```backpass()``` method comes in which computes the partial derivative with respect to that node.  So for the sigmoid function it would look like
+Using these partial derivatives we can actually incrementally compute the final partial derivative by moving backwards through the graph.  
+
+<div style="text-align:center">
+<img src="{{site.baseurl}}/assets/comp_graph_grad.png" width="75%" height="75%">
+</div>
+
+We  start at the final node which is the cross-entropy cost-function and here we can compute $$\frac{\partial L}{\partial y}$$ and store the result in that node's ```gradients``` variable.  Then we can travel backwards to the sigmoid node where we can compute $$\frac{\partial y}{\partial a}$$ and combining this with the previous gradient we get the product $$\frac{\partial L}{\partial y} \frac{\partial y}{\partial a}$$ which we then store in that node's ```gradients``` variable.  Then finally we can travel backwards once more to the dot product node where we can compute $$\frac{\partial a}{\partial w_i}$$ and combine this with the previous gradients to arrive at the final result of $$\frac{\partial L}{\partial y} \frac{\partial y}{\partial a} \frac{\partial a}{\partial w_i}$$.  So just as we travelled forwards throught the graph to compute the output, we can travel backwards through the graph to compute the partial derivatives.  And just like in the forwards pass, the backwards pass can be computed in an encapsulated way where all a node needs to be aware of is it's derivative and the nodes it is connected to.  This is where the ```backpass()``` method comes in which computes the partial derivative with respect to that node.  So for the sigmoid function it would look like
 
 ```python
 
