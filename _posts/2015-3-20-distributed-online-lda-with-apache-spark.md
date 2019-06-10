@@ -6,7 +6,7 @@ comments: false
 categories: 
 ---
 
-In the past, I have studied the online LDA algorithm from [Hoffman et al.](https://www.google.ca/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CDUQFjAA&url=https%3A%2F%2Fwww.cs.princeton.edu%2F~blei%2Fpapers%2FHoffmanBleiBach2010b.pdf&ei=pib7VP_ZIsewggS3pYAY&usg=AFQjCNHLmU8Gk_P4usBj2QcGcaolw87w4w&sig2=TVmpNtdTBqqPScHDqBGYcg&bvm=bv.87611401,d.eXY) in some depth resulting in [this blog post](http://alexminnaar.com/2014/10/14/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html) and corresponding [Scala code](https://github.com/alexminnaar/ScalaTopicModels).  Before we go further I will provide a general description of how the algorithm works.  In online LDA, minibatches of documents are sequentially processed to update a global topic/word matrix which defines the topics that have been learned.  The processing consists of two steps:
+In the past, I have studied the online LDA algorithm from [Hoffman et al.](https://www.google.ca/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CDUQFjAA&url=https%3A%2F%2Fwww.cs.princeton.edu%2F~blei%2Fpapers%2FHoffmanBleiBach2010b.pdf&ei=pib7VP_ZIsewggS3pYAY&usg=AFQjCNHLmU8Gk_P4usBj2QcGcaolw87w4w&sig2=TVmpNtdTBqqPScHDqBGYcg&bvm=bv.87611401,d.eXY) in some depth resulting in [this blog post](http://alexminnaar.com/2014/10/14/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html).  Before we go further I will provide a general description of how the algorithm works.  In online LDA, minibatches of documents are sequentially processed to update a global topic/word matrix which defines the topics that have been learned.  The processing consists of two steps:
 
 <ul style="margin-left: 20px">
   <li style="font-size:19px"><b>The E-Step:</b>  Given the minibatch of documents, updates to the corresponding rows of the topic/word matrix are computed.</li>
@@ -15,7 +15,7 @@ In the past, I have studied the online LDA algorithm from [Hoffman et al.](https
 
 This post details how I developed a distributed version of online LDA using the Apache Spark engine.  At first glance, it might seem redundant to build a distributed version of online LDA since one of the main advantages of the algorithm is its scalability (documents are streamed sequentially so they do not need to be kept in main memory).  While it is true that the original algorithm is scalable in terms of memory, using a distributed computing framework (such as Spark) can speed the algorithm up immensely.  Today, companies are demanding real-time or near real-time data processing which makes a Spark solution advantageous.  Furthermore, there are some cases - for example if you choose to learn a sufficiently large number of topics with a sufficiently large vocabulary size - where the original algorithm can in fact run into memory issues.  Hopefully I have shown that a distributed version of online LDA would be beneficial.
 
-This blog post will be divided into a few sections.  First I will give a very broad overview of how Spark works.  Then I will outline how some processes of the original online LDA algorithm can be parallelized (again, for a more detailed outline of how the original online LDA algorithm works I encourage you to read [my prevous blog post](http://alexminnaar.com/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html)).  Finally I will provide the code for the Spark implemenation as well as a demo.
+This blog post will be divided into a few sections.  First I will give a very broad overview of how Spark works.  Then I will outline how some processes of the original online LDA algorithm can be parallelized (again, for a more detailed outline of how the original online LDA algorithm works I encourage you to read [my prevous blog post](http://alexminnaar.com/2014/10/14/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html)).  Finally I will provide the code for the Spark implemenation as well as a demo.
 
 <h2><font size="5">The Basics of Spark</font></h2>
 The beauty of Spark is in its simplicity.  It has abstracted away all of the complicated aspects of MapReduce programming and it leaves us with a simple interface with which to build our distributed processing jobs.  Here I will provide you with a very brief and incomplete overview of how Spark works (refer to the [Spark documentation](https://spark.apache.org/docs/latest/) for more details). 
@@ -333,6 +333,6 @@ Topic 4: List((attentional,0.031205396268822388), (image,0.030771091189727498), 
 As you can see, these topics seem quite coherent and roughly correspond to different fields of machine learning.
 
 ## References
-* [Github repo](https://github.com/alexminnaar/SparkOnlineLDA) containing example code.
-* [Previous post](http://alexminnaar.com/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html) on online LDA.
+* [Github repo](https://github.com/Nitro/scalda) containing example code.
+* [Previous post](http://alexminnaar.com/2014/10/14/online-latent-dirichlet-allocation-the-best-option-for-topic-modeling-with-large-data-sets.html) on online LDA.
 * [Spark programming guide](http://spark.apache.org/docs/1.2.1/programming-guide.html).
