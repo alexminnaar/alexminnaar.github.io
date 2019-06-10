@@ -6,7 +6,6 @@ comments: false
 categories: 
 ---
 
-## The Multithreading Problem
 Nowadays, computers have multiple execution cores meaning that they can execute multiple tasks at the same time rather than sequentially.  Obviously this makes things much faster but it also presents some new problems.  The term _multithreading_ refers to the process in which multiple threads execute code in the same program simultaneously.  The inherent problem with multithreading lies in the fact that although each thread acts independently, their memory is shared.  Therefore, it is possible for threads to change shared memory values without other threads knowing which can create problems.  Let's use a bank account as an example.  Consider the following code that implements a bank account with ```deposit``` and ```withdraw``` methods.
 
 ```scala

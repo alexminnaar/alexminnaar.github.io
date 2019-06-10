@@ -12,7 +12,7 @@ Presently, most deep neural networks are trained using GPUs due to the enormous 
 <ul style="margin-left: 20px">
   <li style="font-size:19px">GPUs are expensive, both to buy and to rent.</li>
   <li style="font-size:19px">Most GPUs can only hold a relatively small amount of data in memory.</li>
-  <li style="font-size:19px">CPU-to-GPU data transfer is very slow.  Depending on your application it can be so slow that it actually negates the speed-up that the GPU provides.</li>
+  <li style="font-size:19px">Host-to-device (and vice-versa) data transfer is very slow.  Depending on your application it can be so slow that it actually negates the speed-up that the GPU provides.</li>
   <li style="font-size:19px">The CUDA GPU programming library is written in low-level C which many programmers are not experienced with (however there are many deep learning libraries written in high level languages with GPU capabilities e.g. <em>Theano</em>, <em>Torch</em>, <em>Caffe</em>, etc.).</li>
 </ul>
 
@@ -26,7 +26,6 @@ _DistBelief_ is a framework for training deep neural networks that avoids GPUs e
   <li style="font-size:19px">Finally, a demo applying DistBelief to the classic XOR function problem.</li>
 </ol>
 
-Let's get started!
 
 <h2><font size="5">1. The Backpropagation Algorithm</font></h2>
 
@@ -369,7 +368,7 @@ The XOR function is defined by the following truth table.
 Even though this looks like a simple function, learning the XOR function (i.e. being able to predict the correct XOR output given an XOR input) is a classic problem in machine learning because the data points are not _linearly separable_.  This is clearly illustrated by plotting the function.
 
 <div style="text-align:center">
-  <img src="{{site.baseurl}}/assets/xorgraph.gif">
+  <img src="{{site.baseurl}}/assets/xorGraph.gif">
 </div>
 
 From the above graph you can see that there is no line that can separate the $$1$$ outputs from the $$0$$ outputs.  Therefore, no linear classifier can solve this problem (e.g. logistic regression cannot solve this).  However, a multilayer perceptron (a neural network with a hidden layer) can learn non-linear functions. In fact, a multilayer perceptron can learn virtually any non-linear function given a sufficient number of _neural units_ in its hidden layer.  Therefore, the XOR function is a great test for our Akka implementation of _DistBelief_.

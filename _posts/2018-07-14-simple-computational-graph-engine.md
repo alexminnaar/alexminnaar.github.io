@@ -245,6 +245,6 @@ Thank you for reading and you can check out the full computational graph impleme
 
 ## References
 
-* https://github.com/alexminnaar/cgraph
-* https://en.wikipedia.org/wiki/Topological_sorting
+* [https://github.com/alexminnaar/cgraph](https://github.com/alexminnaar/cgraph)
+* [https://en.wikipedia.org/wiki/Topological_sorting](https://en.wikipedia.org/wiki/Topological_sorting)
 
