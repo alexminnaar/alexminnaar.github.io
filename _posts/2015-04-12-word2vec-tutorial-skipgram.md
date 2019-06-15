@@ -21,7 +21,7 @@ where $$v_{queen}$$,$$v_{woman}$$,$$v_{man}$$, and $$v_{king}$$ are the word vec
 
 In this series of blog posts I will describe the two main _Word2Vec_ models - the _skip-gram model_ and the _continuous bag-of-words_ model.
 
-Both of these models are simple neural networks with one hidden layer.  The word vectors are learned via backpropagation and stochastic gradient descent both of which I descibed in my previous [Deep Learning Basics](http://alexminnaar.com/deep-learning-basics-neural-networks-backpropagation-and-stochastic-gradient-descent.html) blog post.
+Both of these models are simple neural networks with one hidden layer.  The word vectors are learned via backpropagation and stochastic gradient descent both of which I descibed in my previous [Deep Learning Basics](http://alexminnaar.com/2015/02/14/deep-learning-basics.html) blog post.
 
 <h2><font size="5">The Skip-Gram Model</font></h2>
 
@@ -38,7 +38,7 @@ Now let's define the _skip-gram_ nerual network model as follows.
 
 In the above model $$\mathbf{x}$$ represents the _one-hot_ encoded vector corresponding to the input word in the training instance and $$\{\mathbf{y_1},...\mathbf{y_C}\}$$ are the _one-hot_ encoded vectors corresponding to the output words in the training instance.  The $$V \times N$$ matrix $$\mathbf{W}$$ is the weight matrix between the input layer and hidden layer whose $$i^{th}$$ row represents the weights corresponding to the $$i^{th}$$ word in the vocabulary. This weight matrix $$\mathbf{W}$$ is what we are interested in learning because it contains the vector encodings of all of the words in our vocabulary (as its rows).  Each output word vector also has an associated $$N \times V$$ output matrix $$\mathbf{W'}$$. There is also a hidden layer consisting of $$N$$ nodes (the exact size of $$N$$ is a training parameter).
 
-From my [previous blog post](http://alexminnaar.com/deep-learning-basics-neural-networks-backpropagation-and-stochastic-gradient-descent.html), we know that the input to a unit in the hidden layer $$h_i$$ is simply the weighted sum of its inputs.  Since the input vector $$\mathbf{x}$$ is _one-hot_ encoded, the weights coming from the nonzero element will be the only ones contributing to the hidden layer.  Therefore, for the input $$\mathbf{x}$$ with $$x_k=1$$ and $$x_{k'}=0$$ for all $$k' \neq k$$ the outputs of the hidden layer will be equivalent to the $$k^{th}$$ row of $$\mathbf{W}$$.  Or mathematically,
+From my [previous blog post](http://alexminnaar.com/2015/02/14/deep-learning-basics.html), we know that the input to a unit in the hidden layer $$h_i$$ is simply the weighted sum of its inputs.  Since the input vector $$\mathbf{x}$$ is _one-hot_ encoded, the weights coming from the nonzero element will be the only ones contributing to the hidden layer.  Therefore, for the input $$\mathbf{x}$$ with $$x_k=1$$ and $$x_{k'}=0$$ for all $$k' \neq k$$ the outputs of the hidden layer will be equivalent to the $$k^{th}$$ row of $$\mathbf{W}$$.  Or mathematically,
 
 $$\mathbf{h}=\mathbf{x}^T \mathbf{W}=\mathbf{W}_{(k, .)} := \mathbf{v}_{w_I}$$
 
@@ -100,6 +100,6 @@ $$w^{(new)}_{ij} =w^{(old)}_{ij}- \eta \cdot \sum^V_{j=1} \sum^C_{c=1} (y_{c,j}-
 As you can see, each gradient descent update requires a sum over the entire vocabulary $$V$$ which is computationally expensive.  In practice, computation techniques such as hierarchical softmax and negative sampling are used to make this computation more efficient.
 
 ## References
-* [Word2Vec Tutorial Part II: The Continuous Bag-of-Words Model](word2vec-tutorial-part-ii-the-continuous-bag-of-words-model.html)
+* [Word2Vec Tutorial Part II: The Continuous Bag-of-Words Model](http://alexminnaar.com/2015/05/18/word2vec-tutorial-continuousbow.html)
 * [Distributed Representations of Words and Phrases and their Compositionality](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf), Mikolov et al.
 * [Natural Language Processing (almost) from Scratch](http://arxiv.org/abs/1103.0398), Collobert et al.

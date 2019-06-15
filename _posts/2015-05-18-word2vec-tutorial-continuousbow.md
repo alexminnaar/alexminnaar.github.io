@@ -6,7 +6,7 @@ comments: false
 categories: 
 ---
 
-In the [previous post](http://alexminnaar.com/word2vec-tutorial-part-i-the-skip-gram-model.html) the concept of word vectors was explained as was the derivation of the _skip-gram_ model.  In this post we will explore the other _Word2Vec_ model - the _continuous bag-of-words_ (CBOW) model.  If you understand the _skip-gram_ model then the _CBOW_ model should be quite straight-forward because in many ways they are mirror images of each other.  For instance, if you look at the model diagram
+In the [previous post](http://alexminnaar.com/2015/04/12/word2vec-tutorial-skipgram.html) the concept of word vectors was explained as was the derivation of the _skip-gram_ model.  In this post we will explore the other _Word2Vec_ model - the _continuous bag-of-words_ (CBOW) model.  If you understand the _skip-gram_ model then the _CBOW_ model should be quite straight-forward because in many ways they are mirror images of each other.  For instance, if you look at the model diagram
 
 <div style="text-align:center">
 
@@ -96,6 +96,6 @@ where $$w_{I,c}$$ is the $$c^{th}$$ word in the input context.
 
 ## References
 
-* [Word2Vec Tutorial Part I: The Skip-Gram Model](http://alexminnaar.com/word2vec-tutorial-part-i-the-skip-gram-model.html)
+* [Word2Vec Tutorial Part I: The Skip-Gram Model](http://alexminnaar.com/2015/04/12/word2vec-tutorial-skipgram.html)
 * [Distributed Representations of Words and Phrases and their Compositionality](http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf), Mikolov et al.
 * [Natural Language Processing (almost) from Scratch](http://arxiv.org/abs/1103.0398), Collobert et al.
