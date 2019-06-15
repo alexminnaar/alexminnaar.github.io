@@ -65,7 +65,7 @@ __device__ float distance(float x1, float x2)
 <h2><font size="5">Updating Centroids</font></h2>
 
 
-The next step is to recompute the centroids given the cluster assignments computed in the previous step.  This is much more tricky to parallelize since the centroid computations depend on all of the other datapoints.  However, operations that rely on distributed datasets to compute a single output value can still be parallelized and are called <i>reductions</i>.  A sum reduction is shown in the diagram below.
+The next step is to recompute the centroids given the cluster assignments computed in the previous step.  This is much more tricky to parallelize since the centroid computations depend on all of the other datapoints in its cluster.  However, operations that rely on distributed datasets to compute a single output value can still be parallelized and are called <i>reductions</i>.  A sum reduction is shown in the diagram below.
 
 <div style="text-align:center">
 
