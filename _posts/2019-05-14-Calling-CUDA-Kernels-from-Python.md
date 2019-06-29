@@ -73,7 +73,40 @@ The first line loads the shared object file, then we initialize our two input ma
 
 Now that we can successfully call cuBLAS from python, let's see how it performs compared to numpy.  The benefits of parallelization only shine through when there is enough data to take advantage of it.  Otherwise the benefits are cancelled out by the overhead associated thread organization and data transfer.  Therefore, we would expect numpy to outperform cuBLAS for smaller input matrices but there should be an point at which the matrices become large enough for cuBLAS's parallelization to overtake numpy.
 
-The code used for this experiment can be found [here](https://github.com/alexminnaar/cublas_vs_numpy/blob/master/cublas_test.py), but basically we are just timing the matrix multiplication operations for cuBLAS and numpy for increasing input matrix sizes.  The times can be a bit volatile so we average over 100 computations for each matrix dimension.  Below is a plot of the timing results.
+The code used for this experiment can be found [here](https://github.com/alexminnaar/cublas_vs_numpy/blob/master/cublas_test.py), but basically we are just timing the matrix multiplication operations for cuBLAS and numpy for increasing input matrix sizes.  Below are the timing functions for each implementation.
+
+```python
+def cublas_mm(matrix_dim):
+    N = matrix_dim * matrix_dim
+
+    m1 = numpy.ones((N), dtype=numpy.float32)
+    m2 = numpy.ones((N), dtype=numpy.float32)
+    output_m = numpy.ones((N), dtype=numpy.float32)
+
+    t0 = time.time()
+
+    E.run(ctypes.c_void_p(m1.ctypes.data),
+          ctypes.c_void_p(m2.ctypes.data),
+          ctypes.c_void_p(output_m.ctypes.data),
+          ctypes.c_int(matrix_dim))
+
+    t1 = time.time()
+    return t1 - t0
+
+
+def numpy_mm(matrix_dim):
+    m1 = numpy.ones((matrix_dim, matrix_dim), dtype=numpy.float32)
+    m2 = numpy.ones((matrix_dim, matrix_dim), dtype=numpy.float32)
+
+    t0 = time.time()
+
+    _ = numpy.dot(m1, m2)
+
+    t1 = time.time()
+    return t1 - t0
+```
+
+The times can be a bit volatile so we average over 100 computations for each matrix dimension.  Below is a plot of the timing results.
 
 <div style="text-align:center">
 
