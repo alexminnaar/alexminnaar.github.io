@@ -12,13 +12,14 @@
   {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
         &nbsp;&nbsp;
-      <a href="{{site.url}}/" class="newer mega-octicon" style="min-width: 32px;"> newer posts<span class="mega-octicon octicon-playback-{% if site.rtl %}rewind{% else %}fast-forward{% endif %}" style="min-width: 32px;"></span></a>
+      <a href="{{site.url}}/" class="newer mega-octicon" style="min-width: 32px;">newer posts<span class="mega-octicon octicon-playback-{% if site.rtl %}rewind{% else %}fast-forward{% endif %}" style="min-width: 32px;"></span></a>
     {% else %}
-      <a href="{{site.url}}/page{{paginator.previous_page}}" class="newer mega-octicon"> newer posts<span class="mega-octicon octicon-playback-{% if site.rtl %}rewind{% else %}fast-forward{% endif %}" style="min-width: 32px;"></span></a>
+            &nbsp;&nbsp;
+      <a href="{{site.url}}/page{{paginator.previous_page}}" class="newer mega-octicon">newer posts<span class="mega-octicon octicon-playback-{% if site.rtl %}rewind{% else %}fast-forward{% endif %}" style="min-width: 32px;"></span></a>
     {% endif %}
   {% else %}
     &nbsp;&nbsp;
-<span class="previous mega-octicon"> newer posts<span class="mega-octicon octicon-playback-{% if site.rtl %}rewind{% else %}fast-forward{% endif %}" style="min-width: 32px;"></span></span>
+<span class="previous mega-octicon">newer posts<span class="mega-octicon octicon-playback-{% if site.rtl %}rewind{% else %}fast-forward{% endif %}" style="min-width: 32px;"></span></span>
   {% endif %}
 </div>
 {%  endif %}

@@ -25,7 +25,7 @@ If you take a close look at the update formula you will see that it involves the
 
 <h2><font size="5">Q-Learning (Off-Policy TD Learning)</font></h2>
 
-Recall the for off-policy methods, the value function for a given policy is learned by following a different policy.  The Q-learning update function is
+Recall that for off-policy methods, the value function for a given policy is learned by following a different policy.  The Q-learning update function is
 
 $$Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha [r_{t+1} + \gamma \max_aQ(s_{t+1},a) - Q(s_t,a_t)]$$
 

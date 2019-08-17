@@ -142,7 +142,7 @@ However the problem with this approach is that elements on the boundaries will h
 ```c
 Pvalue+=N[N_index]*M[j];
 ```
-However, the good news is that it is probable that these elements would have already been loaded to the L2 cache if they had be read into the shared memory of another block by the time this call is made.  In this case it would actually have been read from the L2 cache rather than global memory which is must faster.
+However, the good news is that it is probable that these elements would have already been loaded to the L2 cache if they had been read into the shared memory of another block by the time this call is made.  In this case it would actually have been read from the L2 cache rather than global memory which is faster.
 
 Thank you for reading.
 
