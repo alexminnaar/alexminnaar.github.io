@@ -19,11 +19,12 @@ All of my projects (and code for this blog) can be found at [my github account](
 </ul>
 
 <h2><font size="5">My Open Source Contributions</font></h2>
-Here are a few projects that I have made significant contributions to.  I have also included links to my PRs.
+Here are a few projects that I have made contributions to.  I have also included links to my PRs.
 
 <ul style="margin-left: 20px">
   <li style="font-size:18px"><a href="https://github.com/deepmind/open_spiel">deepmind/open_spiel</a>: OpenSpiel is a collection of environments and algorithms for research in general reinforcement learning and search/planning in games. <a href="https://github.com/deepmind/open_spiel/pulls?q=is%3Apr+author%3Aalexminnaar+is%3Aclosed">(My PRs)</a>.</li>
   <li style="font-size:18px"><a href="https://github.com/deepmind/bsuite">deepmind/bsuite</a>: bsuite is a collection of carefully-designed experiments that investigate core capabilities of a reinforcement learning (RL) agent. <a href="https://github.com/deepmind/bsuite/pulls?q=is%3Apr+author%3Aalexminnaar+is%3Aclosed">(My PRs)</a>.</li>
+  <li style="font-size:18px"><a href="https://github.com/NVIDIA/PyProf">NVIDIA/PyProf</a>: A GPU performance profiling tool for PyTorch models. <a href="https://github.com/NVIDIA/PyProf/pulls?q=is%3Apr+author%3Aalexminnaar">(My PRs)</a>.</li>
 </ul>
 
 <h2><font size="5">Contact</font></h2>

@@ -2,7 +2,7 @@ name: Alex Minnaar
 description: >
     Alex Minnaar's Blog
 about: >
-    Welcome to my blog.  My name is Alex Minnaar and I work in the areas of machine learning/data science/software engineering.  In terms of machine learning I have experience with deep learning, natural langage processing, and recommender systems as well as ML frameworks such as TensorFlow, Keras, CoreNLP, MALLET, and Spark MLlib.  In terms of software engineering I haved worked with languages such as Scala, Python, and C++ along with distributed processing frameworks like Spark and low-level frameworks like CUDA C.  
+    Welcome to my blog.  My name is Alex Minnaar and I work in the areas of machine learning/data science/software engineering.  In terms of machine learning I have experience with deep learning, natural langage processing, and recommender systems as well as ML frameworks such as TensorFlow, Keras, CoreNLP, MALLET, and Spark MLlib.  In terms of software engineering I haved worked with languages such as Scala, Python, and C++ along with distributed processing frameworks like Apache Spark and low-level frameworks like CUDA C.  
 master_repo: false
 url: ""
 markdown: kramdown
