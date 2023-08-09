@@ -474,4 +474,4 @@ def validate_environment(cls, values: Dict) -> Dict:
 plain chunking as demonstrated in this blog post.  However RepoGPT still isn't perfect - there are still many cases where
 RepoGPT is not able to answer a question correctly for multiple reasons.  But as LLMs get more advanced and context lengths get longer
 RepoGPT's performance should continue to improve.  If you think RepoGPT sounds interesting, please give it a try at 
-https://github.com/alexminnaar/RepoGPT.
+[github.com/alexminnaar/RepoGPT](https://github.com/alexminnaar/RepoGPT).
