@@ -6,8 +6,7 @@ comments: false
 categories: 
 ---
 
-tl;dr [RepoGPT](https://github.com/alexminnaar/RepoGPT) is an LLM-based project for question answering over code repositories that exploits contextual chunking for improved QA performance
-chunking
+tl;dr [RepoGPT](https://github.com/alexminnaar/RepoGPT) is an LLM-based project for question answering over code repositories that exploits contextual chunking for improved performance.
 
 You may have seen [LangChain's code understanding demo](https://python.langchain.com/docs/use_cases/code/code-analysis-deeplake) 
 where 
