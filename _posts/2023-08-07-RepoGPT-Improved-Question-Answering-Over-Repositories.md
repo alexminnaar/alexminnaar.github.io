@@ -260,7 +260,7 @@ the LLM to combine the chunks based on the line numbers and the class/method con
 Here are some further examples of [RepoGPT's](https://github.com/alexminnaar/RepoGPT) ability to answer questions that the original demo could not (all using 
 the gpt-4 LLM, chunk size of 1000 and 0 chunk overlap).
 
-<h2><font size="5">Example 1</font></h2>
+<h2><font size="5">Example #1</font></h2>
 
 __Query:__
 
@@ -327,7 +327,7 @@ Here is the `from_llm_and_tools` method in the `ConversationalAgent` class:
 
 ---
 
-<h2><font size="5">Example 2:</font></h2>
+<h2><font size="5">Example #2:</font></h2>
 
 __Query:__
 
