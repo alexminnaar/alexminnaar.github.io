@@ -24,7 +24,7 @@ Then questions can be asked by
   <li style="font-size:18px">Submitting the prompt to the LLM and get a (hopefully correct) result.</li>
 </ol>
 
-In the demo the LangChain repo itself is used as the repo to query against and you see some impressively correct responses to questions like
+In the demo the [LangChain repo itself](https://github.com/langchain-ai/langchain/tree/master) is used as the repo to query against and you see some impressively correct responses to questions like
 <ul style="margin-left: 20px">
   <li style="font-size:19px">"What is the class hierarchy?"</li>
   <li style="font-size:19px"> "What classes are derived from the Chain class?"</li>
