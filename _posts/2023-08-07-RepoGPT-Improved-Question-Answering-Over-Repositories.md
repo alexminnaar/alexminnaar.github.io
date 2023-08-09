@@ -42,7 +42,7 @@ look into the queries that produce low quality responses you will notice the fol
 These two causes essentially describe a search problem.  [RepoGPT](https://github.com/alexminnaar/RepoGPT) attempts to tackle this search problem and in this way
 improve question answering over code repositories.  
 
-# The Search Problem
+<h2><font size="5">The Search Problem</font></h2>
 
 Let's take the following example query for the LangChain code repo
 ```text
@@ -124,7 +124,7 @@ in the `AlephAlphaAsymmetricSemanticEmbedding` class were not present in the chu
 the given query.  Therefore, the LLM did not have the information required to be able to answer the question correctly.
 This is where [RepoGPT](https://github.com/alexminnaar/RepoGPT) comes in.
 
-# Adding Contextual Chunking
+<h2><font size="5">Adding Contextual Chunking</font></h2>
 
 The problem with the demo setup is that once the code is chunked and indexed into the vector store, all the context around
 the chunk is lost.  For example, here is a code chunk that the LLM might see.
@@ -260,7 +260,7 @@ the LLM to combine the chunks based on the line numbers and the class/method con
 Here are some further examples of [RepoGPT's](https://github.com/alexminnaar/RepoGPT) ability to answer questions that the original demo could not (all using 
 the gpt-4 LLM, chunk size of 1000 and 0 chunk overlap).
 
-# Example 1
+<h2><font size="5">Example 1</font></h2>
 
 __Query:__
 
@@ -327,7 +327,7 @@ Here is the `from_llm_and_tools` method in the `ConversationalAgent` class:
 
 ---
 
-# Example 2:
+<h2><font size="5">Example 2:</font></h2>
 
 __Query:__
 
@@ -399,7 +399,7 @@ Please note that `aget_relevant_documents` returns a NotImplementedError, indica
 ```
 ---
 
-# Example #3:
+<h2><font size="5">Example #3:</font></h2>
 
 __Query:__
 
@@ -471,7 +471,7 @@ def validate_environment(cls, values: Dict) -> Dict:
 ```
 ---
 
-# Conclusion
+<h2><font size="5">Conclusion</font></h2>
 
 [RepoGPT's](https://github.com/alexminnaar/RepoGPT) contextual chunking approach offers a much more effective methodology for question answering over code repositories compared to
 plain chunking as demonstrated in this blog post.  However RepoGPT still isn't perfect - there are still many cases where
