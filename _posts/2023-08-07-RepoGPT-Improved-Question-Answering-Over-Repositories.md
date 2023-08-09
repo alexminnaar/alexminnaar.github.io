@@ -11,26 +11,33 @@ tl;dr [RepoGPT](https://github.com/alexminnaar/RepoGPT) is an LLM-based project 
 You may have seen [LangChain's code understanding demo](https://python.langchain.com/docs/use_cases/code/code-analysis-deeplake) 
 where 
 
-1. A code repository is crawled.
-2. The files are split into chunks and converted to embeddings. 
-3. The chunks and embeddings are stored in a vector database.  
+<ol style="margin-left: 25px">
+  <li style="font-size:18px">A code repository is crawled.</li>
+  <li style="font-size:18px">The files are split into chunks and converted to embeddings.</li>
+  <li style="font-size:18px">The chunks and embeddings are stored in a vector database.</li>
+</ol>
 
-Then questions can be asked by 
-1. Retrieving code chunks that are similar to the query from the vector database.
-2. Creating a prompt containing the query and the similar code chunks.
-3. Submitting the prompt to the LLM and get a (hopefully correct) result.
+Then questions can be asked by
+<ol style="margin-left: 25px">
+  <li style="font-size:18px">Retrieving code chunks that are similar to the query from the vector database.</li>
+  <li style="font-size:18px">Creating a prompt containing the query and the similar code chunks.</li>
+  <li style="font-size:18px">Submitting the prompt to the LLM and get a (hopefully correct) result.</li>
+</ol>
 
 In the demo the LangChain repo itself is used as the repo to query against and you see some impressively correct responses to questions like
-
-* "What is the class hierarchy?"
-* "What classes are derived from the Chain class?"
-* "What classes and functions in the ./langchain/utilities/ forlder are not covered by unit tests?"
+<ul style="margin-left: 20px">
+  <li style="font-size:19px">"What is the class hierarchy?"</li>
+  <li style="font-size:19px"> "What classes are derived from the Chain class?"</li>
+  <li style="font-size:19px"> "What classes and functions in the ./langchain/utilities/ forlder are not covered by unit tests?"</li>
+</ul>
 
 However, if you have experimented with this demo yourself you know that it can yield some low quality responses as well. If you
 look into the queries that produce low quality responses you will notice the following general causes.
 
-1.  The similar chunks coming from the vector database do not contain the required information to answer the query.
-2.  The similar chunks do contain the required information however the LLM does not understand how the chunks relate to each other.
+<ol style="margin-left: 25px">
+  <li style="font-size:18px">The similar chunks coming from the vector database do not contain the required information to answer the query.</li>
+  <li style="font-size:18px">The similar chunks do contain the required information however the LLM does not understand how the chunks relate to each other.</li>
+</ol>
 
 These two causes essentially describe a search problem.  [RepoGPT](https://github.com/alexminnaar/RepoGPT) attempts to tackle this search problem and in this way
 improve question answering over code repositories.  
@@ -158,10 +165,13 @@ code chunk has no clear semantic similarity to the query but the context of that
 code chunk would now be retrieved whereas before, without the context, it would not.  But what pieces of context should we
 add to each code chunk?
 
-* __The File Path:__ If the LLM has access to the file path of the code chunk then it could potentially answer questions related to the repo directory structure.
-* __The Chunk Line Numbers:__  If the LLM knows the starting and ending lines of the code chunk then it can know where the chunk appears in the file and could also potentially have the ability to combine adjacent chunks.
-* __The Methods Contained in the Chunk:__  If the LLM knows which methods are contained in the code chunk then it could potentially understand full methods that span multiple chunks.  This could also help with vector store retrieval as a query may mention a method name however a code chunk implementing that method may not have the method name explicitly mentioned - adding the method name context would fix that.
-* __The Classes Contained in the Chunk:__  Adding the class names defined in the code chunks would also be helpful for the same reasons as adding the method names.
+<ul style="margin-left: 20px">
+  <li style="font-size:19px"><b>The File Path: </b> If the LLM has access to the file path of the code chunk then it could potentially answer questions related to the repo directory structure.</li>
+  <li style="font-size:19px"><b>The Chunk Line Numbers:</b> If the LLM knows the starting and ending lines of the code chunk then it can know where the chunk appears in the file and could also potentially have the ability to combine adjacent chunks.</li>
+  <li style="font-size:19px"><b>The Methods Contained in the Chunk:</b> If the LLM knows which methods are contained in the code chunk then it could potentially understand full methods that span multiple chunks.  This could also help with vector store retrieval as a query may mention a method name however a code chunk implementing that method may not have the method name explicitly mentioned - adding the method name context would fix that.</li>
+  <li style="font-size:19px"><b>The Classes Contained in the Chunk:</b> Adding the class names defined in the code chunks would also be helpful for the same reasons as adding the method names.</li>
+
+</ul>
 
 Here is an example of the same code chunk with the contextual information added by [RepoGPT](https://github.com/alexminnaar/RepoGPT).
 ```
