@@ -1,4 +1,10 @@
-# RepoGPT: Improving Question Answering Over Code Repositories by using Contextual Chunking
+---
+layout: post
+title: "RepoGPT: Improving Question Answering Over Code Repositories by using Contextual Chunking"
+date: 2020-08-07
+comments: false
+categories: 
+---
 
 tl;dr [RepoGPT](https://github.com/alexminnaar/RepoGPT) is an LLM-based project for question answering over code repositories that exploits contextual chunking for improved QA performance
 chunking
