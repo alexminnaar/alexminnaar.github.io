@@ -95,7 +95,7 @@ def embed_documents(self, texts: List[str]) -> List[List[float]]:
 
     return document_embeddings
 ```
-so the above code snippet is what should be returned by the query _"show the embed_documents method in the AlephAlphaAsymmetricSemanticEmbedding class"_.
+so the above code snippet is what should be returned by the query `"show the embed_documents method in the AlephAlphaAsymmetricSemanticEmbedding class"`.
 If you enter this query into the setup defined by the demo mentioned earlier, the LLM response is 
 
 ```
@@ -471,10 +471,14 @@ def validate_environment(cls, values: Dict) -> Dict:
 ```
 ---
 
+Of course there are more use-cases for question answering than just returning methods however this is quite a foundational
+result because it shows that with this additional context the LLM is able to combine related chunks and understand how they
+fit together.  So this should improve any question answering use-case that requires combining chunks.
+
 <h2><font size="5">Conclusion</font></h2>
 
 [RepoGPT's](https://github.com/alexminnaar/RepoGPT) contextual chunking approach offers a much more effective methodology for question answering over code repositories compared to
 plain chunking as demonstrated in this blog post.  However RepoGPT still isn't perfect - there are still many cases where
 RepoGPT is not able to answer a question correctly for multiple reasons.  But as LLMs get more advanced and context lengths get longer
-RepoGPT's performance should continue to improve.  If you think RepoGPT sounds interesting, please give it a try at 
+RepoGPT's performance should continue to improve.  If you think RepoGPT sounds interesting, please give it a try (and maybe a star) at 
 [github.com/alexminnaar/RepoGPT](https://github.com/alexminnaar/RepoGPT).
