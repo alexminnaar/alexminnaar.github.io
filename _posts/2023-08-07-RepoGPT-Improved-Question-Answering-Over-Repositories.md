@@ -21,7 +21,7 @@ Then questions can be asked by
 <ol style="margin-left: 25px">
   <li style="font-size:18px">Retrieving code chunks that are similar to the query from the vector database.</li>
   <li style="font-size:18px">Creating a prompt containing the query and the similar code chunks.</li>
-  <li style="font-size:18px">Submitting the prompt to the LLM and get a (hopefully correct) result.</li>
+  <li style="font-size:18px">Submitting the prompt to the LLM and getting a (hopefully correct) result.</li>
 </ol>
 
 In the demo the [LangChain repo itself](https://github.com/langchain-ai/langchain/tree/master) is used as the repo to query against and you see some impressively correct responses to questions like
