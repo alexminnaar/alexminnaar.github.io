@@ -36,7 +36,7 @@ what is returned by the vector store are document chunks that are similar to rel
 Then repeat the process until the number of relevant document chunks stops increasing.  Below is a diagram of this process.
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/semi-supervised-rag.png" width="80%" height="80%">
+<img src="{{site.baseurl}}/assets/semi-supervised-rag.png" width="100%" height="100%">
 </div>
 
 This approach mitigates the embedding space problem because now the queries to the vector store actually contain document
