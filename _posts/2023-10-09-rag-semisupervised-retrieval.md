@@ -110,7 +110,7 @@ similar documents returned by the vector store.  Specifically, the relevant chun
 ``` 
 
 and the subsequent chunk continuing the method was not returned by the vector store because it
-was not similar enough to the given question.
+was not similar enough to the given question (but obviously still relevant).
 
 Now let's try the semi-supervised retrieval approach outlined earlier.  The first step is to ask the LLM which of the
 similiar code chunks is relevant to answering the given question.  You could use a prompt like
