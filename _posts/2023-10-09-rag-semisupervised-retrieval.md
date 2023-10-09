@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Semi-supervised Retrieval for RAG"
+title: "Semi-Supervised Retrieval for RAG"
 date: 2023-10-09
 comments: false
 categories: 
