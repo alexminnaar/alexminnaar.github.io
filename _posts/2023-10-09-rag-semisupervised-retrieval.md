@@ -80,7 +80,7 @@ private double[][] seed(final List<T> points) {
 As you can see the method is getting cut off and the reason for this is that the full method was not provided in the 
 similar documents returned by the vector store.  Specifically, the relevant chunk returned was cut off as shown below.
 
- ```
+ ```java
 /**
      * kmeans++ seeding which provides guarantee of resulting with log(k) approximation
      * for final clustering results
