@@ -29,7 +29,7 @@ For example here is an example that works fine.
 Notice how the generated interview question is nicely formatted HTML (this will come into play later).  However, if you
 think about this task a bit longer, you might discover that there are some tricky edge-cases.
 
-## This is actually trickier than it seems...
+# This is actually trickier than it seems...
 
 The tricky edge-cases are the following.
 
@@ -48,7 +48,7 @@ The second edge case occurs when the user writes something in the chat ui that i
 obviously no question should be shown on the right side of the page and instead a message should be displayed to the user
 in the chat ui explaining that they need to provide more information.
 
-## Agentic solutions to the rescue?
+# Agentic solutions to the rescue?
 
 My first thought was that this was the perfect candidate for an agentic solution.  The workflow could be the following:
 The user inputs their message on the chat ui side, then an "intent" agent could decide whether the user actually wants
@@ -62,7 +62,7 @@ the question is shown on the right side of the page, if not a message is sent to
 overview of the agentic system.
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/agentic_system.png" width="100%" height="100%">
+<img src="{{site.baseurl}}/assets/agentic_system.png" width="50%" height="50%">
 </div>
 
 I implemented this setup and it worked, more or less.  There were occasional issues related to misclassifications of the agents which 
@@ -72,7 +72,7 @@ careful prompt engineering.  Also, of course, the agentic setup increased latenc
 
 ... but then it hit me that I had way over-engineered this and there was a far more optimal solution that was much simpler.   
 
-## Oops, I really didn't need an agentic solution after all
+# Oops, I really didn't need an agentic solution after all
 
 Remember at the beginning of this blog post when I said that the generated question was instructed to have nicely formatted
 HTML? Well, it turns out that was actually the answer to both my edge cases that I was concerned about.  Let me explain.
@@ -105,7 +105,7 @@ edge case being handled correctly using this strategy.
 Notice how the system knows that the response from the LLM does not contain HTML tags therefore it is a response that
 should be displayed in the chat ui.
 
-## Lessons learned
+# Lessons learned
 
 I learned a few lessons here.  1) Not every complicated problem involving LLMs requires an agentic solution.  More specifically,
 most LLMs handle edge cases in their inputs quite elegantly out-of-the-box.  2) Specifying a distinct output format to 
