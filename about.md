@@ -28,3 +28,7 @@ Here are a few projects that I have made contributions to.
   <li style="font-size:18px"><a href="https://github.com/deepmind/bsuite">deepmind/bsuite</a>: bsuite is a collection of carefully-designed experiments that investigate core capabilities of a reinforcement learning (RL) agent. <a href="https://github.com/deepmind/bsuite/pulls?q=is%3Apr+author%3Aalexminnaar+is%3Aclosed">(My PRs)</a>.</li>
   <li style="font-size:18px"><a href="https://github.com/NVIDIA/PyProf">NVIDIA/PyProf</a>: A GPU performance profiling tool for PyTorch models. <a href="https://github.com/NVIDIA/PyProf/pulls?q=is%3Apr+author%3Aalexminnaar">(My PRs)</a>.</li>
 </ul>
+
+<h2><font size="5">HinterviewGPT</font></h2>
+I also have a web app called <a href="https://hinterviewgpt.com">HinterviewGPT</a> which is an interview study tool that leverages LLMs to enable users to generate
+realistic interview questions and practice them with the help of a personal AI tutor.

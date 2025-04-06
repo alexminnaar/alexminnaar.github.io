@@ -10,7 +10,7 @@ In this blog post I'm going to talk about a time I really thought I needed to im
  to solve an LLM related problem but it turned out that I really didn't.  Let me first describe the problem itself.  I was building a 
 web app where there was one feature where the user could generate a practice interview question for themselves based
 on a description they provide.  Specifically, there was a chat ui on the left half of the page where the user can
-chat with an LLM about the topics/industries etc. that they are interested in and once the LLM has enough information
+chat with an LLM about the topics/industries etc. that they are interested in and once the LLM (GPT-4o in this case) has enough information
 it would generate a relevant interview question on the right side of the page.  Initially the page looked something like
 this.
 
@@ -29,7 +29,7 @@ For example here is an example that works fine.
 Notice how the generated interview question is nicely formatted HTML (this will come into play later).  However, if you
 think about this task a bit longer, you might discover that there are some tricky edge-cases.
 
-# This is actually trickier than it seems...
+## This is actually trickier than it seems...
 
 The tricky edge-cases are the following.
 
@@ -48,7 +48,7 @@ The second edge case occurs when the user writes something in the chat ui that i
 obviously no question should be shown on the right side of the page and instead a message should be displayed to the user
 in the chat ui explaining that they need to provide more information.
 
-# Agentic solutions to the rescue?
+## Agentic solutions to the rescue?
 
 My first thought was that this was the perfect candidate for an agentic solution.  The workflow could be the following:
 The user inputs their message on the chat ui side, then an "intent" agent could decide whether the user actually wants
@@ -72,7 +72,7 @@ careful prompt engineering.  Also, of course, the agentic setup increased latenc
 
 ... but then it hit me that I had way over-engineered this and there was a far more optimal solution that was much simpler.   
 
-# Oops, I really didn't need an agentic solution after all
+## Oops, I really didn't need an agentic solution after all
 
 Remember at the beginning of this blog post when I said that the generated question was instructed to have nicely formatted
 HTML? Well, it turns out that was actually the answer to both my edge cases that I was concerned about.  Let me explain.
@@ -105,10 +105,16 @@ edge case being handled correctly using this strategy.
 Notice how the system knows that the response from the LLM does not contain HTML tags therefore it is a response that
 should be displayed in the chat ui.
 
-# Lessons learned
+## Lessons learned
 
 I learned a few lessons here.  1) Not every complicated problem involving LLMs requires an agentic solution.  More specifically,
 most LLMs handle edge cases in their inputs quite elegantly out-of-the-box.  2) Specifying a distinct output format to 
 the response (e.g. HTML) can have an added benefit - you know if the LLM was successful if the response is in the specified
 format or unsuccessful if it is in plain text.  Sort of like an implicit classification that LLMs give you for free.  In retrospect
 a lot of this seems kind of obvious but it definitely didn't seem that way when I was working on it.
+
+__UPDATE:__  I recently tried the above with some reasoning models (o1-mini and o3-mini) and it didn't quite work the same
+way.  Specifically, when these models were not able to generate interview questions they actually __still__ responded
+in valid HTML, which is not the behavior of GPT-4o.  However, this was fairly easily solved by adding some text to the prompt
+to explicitly tell the LLM to respond in plain text if a question could not be generated.  So even with this difference
+it still stands that an agentic solution was not needed.
