@@ -113,7 +113,8 @@ the response (e.g. HTML) can have an added benefit - you know if the LLM was suc
 format or unsuccessful if it is in plain text.  Sort of like an implicit classification that LLMs give you for free.  In retrospect
 a lot of this seems kind of obvious but it definitely didn't seem that way when I was working on it.
 
-__UPDATE:__  I recently tried the above with some reasoning models (o1-mini and o3-mini) and it didn't quite work the same
+__UPDATE:__  
+I recently tried the above with some reasoning models (o1-mini and o3-mini) and it didn't quite work the same
 way.  Specifically, when these models were not able to generate interview questions they actually __still__ responded
 in valid HTML, which is not the behavior of GPT-4o.  However, this was fairly easily solved by adding some text to the prompt
 to explicitly tell the LLM to respond in plain text if a question could not be generated.  So even with this difference
