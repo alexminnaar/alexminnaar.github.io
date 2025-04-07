@@ -40,12 +40,12 @@ The tricky edge-cases are the following.
 
 The first edge case occurs when the user writes something in the chat ui like "How does this work?" or "Thanks for 
 generating this question" or "Wow this question you generated is terrible" or "ksflkjdslkjflkdjflkds" - in these cases
-the LLM should not actually generate a question but respond to the user within the chat ui.  So we have to somehow
+the LLM should not actually generate a question but rather respond to the user within the chat ui.  So we have to somehow
 predict whether the users intent is to generate a question or to receive a response in the chat ui and proceed accordingly.
 
 The second edge case occurs when the user writes something in the chat ui that is intended to generate a question but,
  according to the LLM, it does not contain enough information to actually generate a high quality question.  In this case
-obviously no question should be shown on the right side of the page and instead a message should be displayed to the user
+obviously no question would be shown on the right side of the page and instead a message should be displayed to the user
 in the chat ui explaining that they need to provide more information.
 
 ## Agentic solutions to the rescue?
