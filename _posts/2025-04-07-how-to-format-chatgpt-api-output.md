@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to Nicely Format OpenAI API Output for the Web"
+title: "How to Nicely Format Streaming OpenAI API Output for the Web"
 date: 2025-04-07
 comments: false
 categories:
@@ -43,7 +43,7 @@ course the styling can be changed to your liking.
 
 The right pane has the following structure.
 
-```html
+```javascript
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
