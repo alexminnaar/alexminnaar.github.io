@@ -31,7 +31,9 @@ The backbone for markdown formatting in my project was [react-markdown](https://
 formatting works well out-of-the-box using this component.  Here is what text formatting looks like from my example repo
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/formatted_text.png" width="100%" height="100%">
+<img src="{{site.baseurl}}/assets/formatted_text.png" width="100%" height="100%"     
+style="border: 2px solid #000; border-radius: 4px;"
+>
 </div>
 
 To be clear, the left pane has a text input where the prompt is entered and when the submit button is clicked the OpenAI
@@ -41,7 +43,7 @@ course the styling can be changed to your liking.
 
 The right pane has the following structure.
 
-```javascript
+```html
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -71,7 +73,7 @@ Here `markdownOutput` is the output from the OpenAI API - so it is simply passed
 Next up is code formatting.  This basically means making the generated code look nice and have syntax highlighting.  This
 requires the `rehype-highlight` plugin for `react-markdown`.  Once installed, add it to the `rehypePlugins` parameter.
 
-```javascript
+```html
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -97,7 +99,9 @@ requires the `rehype-highlight` plugin for `react-markdown`.  Once installed, ad
 The result looks like the following.
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/code_formatting.png" width="100%" height="100%">
+<img src="{{site.baseurl}}/assets/code_formatting.png" width="100%" height="100%"
+style="border: 2px solid #000; border-radius: 4px;"
+>
 </div>
 
 As you can see the code is displayed with syntax highlighting as desired.  You can also experiment with different highlighting
@@ -111,7 +115,7 @@ we need two plugins - `rehype-math` and `rehype-katex`.  `rehype-math` detects t
 and converts it into an AST (abstract syntax tree), then `rehype-katex` converts the AST into something that looks like
 LaTeX formatting in the browser.  The code looks like the following.
 
-```javascript
+```html
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -137,7 +141,9 @@ LaTeX formatting in the browser.  The code looks like the following.
 And the result looks like the following.
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/math_formatting_bad.png" width="100%" height="100%">
+<img src="{{site.baseurl}}/assets/math_formatting_bad.png" width="100%" height="100%"
+style="border: 2px solid #000; border-radius: 4px;"
+>
 </div>
 
 Hey, that doesn't look right!  The reason for this is the OpenAI API generates math with inline statements like `\(...\)`
@@ -154,7 +160,7 @@ const preprocessLaTeX = (content) => {
 
 So let's change the code to incorporate this pre-processing step.
 
-```javascript
+```html
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -180,7 +186,9 @@ So let's change the code to incorporate this pre-processing step.
 and the result is
 
 <div style="text-align:center">
-<img src="{{site.baseurl}}/assets/math_formatting_good.png" width="100%" height="100%">
+<img src="{{site.baseurl}}/assets/math_formatting_good.png" width="100%" height="100%"
+style="border: 2px solid #000; border-radius: 4px;"
+>
 </div>
 
 That looks much better.  Using regex is always a bit risky here but unfortunately it is required since the way the 
