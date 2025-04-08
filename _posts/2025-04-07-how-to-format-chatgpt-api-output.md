@@ -44,10 +44,10 @@ course the styling can be changed to your liking.
 The right pane has the following structure.
 
 ```
-<div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+<div style={{{{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}}}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
-      style={{
+      style={{{{
          flex: 1,
          border: '1px solid #ccc',
          padding: 16,
@@ -55,7 +55,7 @@ The right pane has the following structure.
          backgroundColor: '#fdfdfd',
          overflowY: 'auto',
          whiteSpace: 'pre-wrap',
-      }}
+      }}}}
    >
       <ReactMarkdown
          children={markdownOutput}
