@@ -44,19 +44,9 @@ course the styling can be changed to your liking.
 The right pane has the following structure.
 
 ```
-<div style={{{{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}}}>
+<div>
    <h3>OpenAI Response (Formatted)</h3>
-   <div
-      style={{{{
-         flex: 1,
-         border: '1px solid #ccc',
-         padding: 16,
-         borderRadius: 4,
-         backgroundColor: '#fdfdfd',
-         overflowY: 'auto',
-         whiteSpace: 'pre-wrap',
-      }}}}
-   >
+   <div>
       <ReactMarkdown
          children={markdownOutput}
          remarkPlugins={[]}
@@ -74,19 +64,9 @@ Next up is code formatting.  This basically means making the generated code look
 requires the `rehype-highlight` plugin for `react-markdown`.  Once installed, add it to the `rehypePlugins` parameter.
 
 ```
-<div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+<div>
    <h3>OpenAI Response (Formatted)</h3>
-   <div
-      style={{
-         flex: 1,
-         border: '1px solid #ccc',
-         padding: 16,
-         borderRadius: 4,
-         backgroundColor: '#fdfdfd',
-         overflowY: 'auto',
-         whiteSpace: 'pre-wrap',
-      }}
-   >
+   <div>
       <ReactMarkdown
          children={markdownOutput}
          remarkPlugins={[]}
@@ -116,19 +96,9 @@ and converts it into an AST (abstract syntax tree), then `rehype-katex` converts
 LaTeX formatting in the browser.  The code looks like the following.
 
 ```
-<div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+<div>
    <h3>OpenAI Response (Formatted)</h3>
-   <div
-      style={{
-         flex: 1,
-         border: '1px solid #ccc',
-         padding: 16,
-         borderRadius: 4,
-         backgroundColor: '#fdfdfd',
-         overflowY: 'auto',
-         whiteSpace: 'pre-wrap',
-      }}
-   >
+   <div>
       <ReactMarkdown
          children={markdownOutput}
          remarkPlugins={[remarkMath]}
@@ -161,19 +131,9 @@ const preprocessLaTeX = (content) => {
 So let's change the code to incorporate this pre-processing step.
 
 ```
-<div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+<div>
    <h3>OpenAI Response (Formatted)</h3>
-   <div
-      style={{
-         flex: 1,
-         border: '1px solid #ccc',
-         padding: 16,
-         borderRadius: 4,
-         backgroundColor: '#fdfdfd',
-         overflowY: 'auto',
-         whiteSpace: 'pre-wrap',
-      }}
-   >
+   <div>
       <ReactMarkdown
          children={preprocessLaTeX(markdownOutput)}
          remarkPlugins={[remarkMath]}
