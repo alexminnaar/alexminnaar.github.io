@@ -7,8 +7,8 @@ categories:
 ---
 
 In this blog post I'm going to talk about a time I really thought I needed to implement an _agentic_ solution
- to solve an LLM related problem but it turned out that I really didn't.  Let me first describe the problem itself.  I was building a 
-web app where there was one feature where the user could generate a practice interview question for themselves based
+ to solve an LLM related problem but it turned out that I really didn't.  Let me first describe the problem itself.  I was building 
+[HinterviewGPT](https://hinterviewgpt.com/) where there was one feature where the user could generate a practice interview question for themselves based
 on a description they provide.  Specifically, there was a chat ui on the left half of the page where the user can
 chat with an LLM about the topics/industries etc. that they are interested in and once the LLM (GPT-4o in this case) has enough information
 it would generate a relevant interview question on the right side of the page.  Initially the page looked something like

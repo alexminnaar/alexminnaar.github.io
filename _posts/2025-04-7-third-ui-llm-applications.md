@@ -70,7 +70,7 @@ The chat UI is context-aware of both the interview question and the contents of 
 act as a tutor, helping the user understand the question and how their current solution on the whiteboard might be 
 misguided.
 
-In effect, this _third UI_ allows the uer to actively __co-create__ alongside the LLM.  Specifically, it introduces a live
+In effect, this _third UI_ allows the user to actively __co-create__ alongside the LLM.  Specifically, it introduces a live
 user-generated context that the LLM can continuously interpret and respond to.
 
 As LLM applications continue to evolve, I believe this _third UI_ — co-creative, context-rich, and user-driven — will become increasingly important for serious learning, creativity, and productivity tools.
