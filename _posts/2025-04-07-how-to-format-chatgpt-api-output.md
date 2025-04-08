@@ -43,7 +43,7 @@ course the styling can be changed to your liking.
 
 The right pane has the following structure.
 
-```javascript
+```
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -73,7 +73,7 @@ Here `markdownOutput` is the output from the OpenAI API - so it is simply passed
 Next up is code formatting.  This basically means making the generated code look nice and have syntax highlighting.  This
 requires the `rehype-highlight` plugin for `react-markdown`.  Once installed, add it to the `rehypePlugins` parameter.
 
-```html
+```
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -115,7 +115,7 @@ we need two plugins - `rehype-math` and `rehype-katex`.  `rehype-math` detects t
 and converts it into an AST (abstract syntax tree), then `rehype-katex` converts the AST into something that looks like
 LaTeX formatting in the browser.  The code looks like the following.
 
-```html
+```
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
@@ -160,7 +160,7 @@ const preprocessLaTeX = (content) => {
 
 So let's change the code to incorporate this pre-processing step.
 
-```html
+```
 <div style={{ flex: 1, padding: 20, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
    <h3>OpenAI Response (Formatted)</h3>
    <div
