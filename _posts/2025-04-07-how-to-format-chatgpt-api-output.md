@@ -43,7 +43,7 @@ course the styling can be changed to your liking.
 
 The right pane has the following structure.
 
-```
+```javascript
 <div>
    <h3>OpenAI Response (Formatted)</h3>
    <div>
