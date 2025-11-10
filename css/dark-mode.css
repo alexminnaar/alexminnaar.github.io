@@ -1,0 +1,120 @@
+/*----------------------------------------------------------------------------
+  Dark Mode Theme
+----------------------------------------------------------------------------*/
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e4e4e4;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #888888;
+  --accent-color: #4a9eff;
+  --accent-hover: #6bb0ff;
+  --border-color: #333333;
+  --card-bg: #242424;
+  --code-bg: #2d2d2d;
+  --code-border: #3a3a3a;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .header-container {
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .listing .post {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] pre {
+  background: var(--code-bg);
+  border-color: var(--code-border);
+}
+
+[data-theme="dark"] code {
+  background: var(--code-bg);
+  color: var(--accent-color);
+}
+
+[data-theme="dark"] blockquote {
+  background: var(--code-bg);
+  border-left-color: var(--accent-color);
+}
+
+[data-theme="dark"] table {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .odd td {
+  background: #2a2a2a;
+}
+
+[data-theme="dark"] .figure {
+  background: var(--code-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .figure small {
+  background: var(--border-color);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] ul.nav li.logo a {
+  background: var(--accent-color);
+}
+
+/* Improve syntax highlighting visibility in dark mode */
+[data-theme="dark"] code span.global {
+  color: #5eb3ff;
+}
+
+[data-theme="dark"] code span.brackets {
+  color: #a0a0a0;
+}
+
+[data-theme="dark"] code span.string {
+  color: #f0a070;
+}
+
+[data-theme="dark"] code span.symbol,
+[data-theme="dark"] code span.selectors {
+  color: #6bb0ff;
+}
+
+[data-theme="dark"] code span.properties {
+  color: #ff8866;
+}
+
+[data-theme="dark"] code span.keywords {
+  color: #77cc55;
+}
+
+[data-theme="dark"] code span.comment {
+  color: #707070;
+}
+
+[data-theme="dark"] .keep-in-touch {
+  border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] hr {
+  color: var(--border-color);
+}
+
+/* Dark mode images - reduce brightness slightly */
+[data-theme="dark"] img {
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+[data-theme="dark"] img:hover {
+  opacity: 1;
+}
+

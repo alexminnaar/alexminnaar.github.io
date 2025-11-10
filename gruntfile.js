@@ -6,6 +6,7 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'css/base.css',
+          'css/dark-mode.css',
           'css/syntax/emacs.css',
           'css/octicons.css',
           'css/font-awesome.min.css'

@@ -1,31 +1,32 @@
 <div class="header-container container">
   <header>
-<div style='float: right;'>
-    {% if site.owner.github %}  
-    <a href="{{ site.owner.github }}" class="social-media-icons"><i class="fa fa-2x fa-github-square" aria-hidden="true"></i></a>
-  {% endif %}  
-  {% if site.owner.linkedin %}
-    <a href="{{ site.owner.linkedin }}" class="social-media-icons"><i class="fa fa-2x fa-linkedin-square" aria-hidden="true"></i></a>
-  {% endif %}
-  {% if site.owner.email %}
-    <a href="mailto:{{ site.owner.email }}" class="social-media-icons"><i class="fa fa-2x fa-envelope-square" aria-hidden="true"></i></a>
-  {% endif %}
-  {% if site.owner.twitter %}  
-    <a href="https://twitter.com/{{ site.owner.twitter }}" class="social-media-icons"><i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i></a>
-  {% endif %}
+    <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+      <a href="/" class="top-link">{{ site.name }}</a>
+    </div>
 
-</div>
-
-
-    <a href="/" class="top-link">{{ site.name }}</a>
-
+    <nav style="display: flex; align-items: center; gap: 20px;">
       <ul class="nav">
         <!--Change the  URL here if working on an absolute domain-->
         <li><a href="/">Blog</a></li>
         <li><a href="/about">About Me</a></li>
+      </ul>
 
-<!--         <li><a href="{{ site.url }}/feed.xml">RSS</a></li>
- -->      </ul>
-
+      <div style="display: flex; align-items: center; gap: 8px; border-left: 1px solid var(--border-color); padding-left: 20px;">
+        {% if site.owner.github %}  
+          <a href="{{ site.owner.github }}" class="social-media-icons" aria-label="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>
+        {% endif %}  
+        {% if site.owner.linkedin %}
+          <a href="{{ site.owner.linkedin }}" class="social-media-icons" aria-label="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.owner.email %}
+          <a href="mailto:{{ site.owner.email }}" class="social-media-icons" aria-label="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if site.owner.twitter %}  
+          <a href="https://twitter.com/{{ site.owner.twitter }}" class="social-media-icons" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        {% endif %}
+        
+        <button class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </nav>
   </header>
 </div>
